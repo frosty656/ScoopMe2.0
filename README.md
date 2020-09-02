@@ -48,7 +48,7 @@ Main screens:
         - Change name
         - Change password
 
-![Initial Welcome Screen](https://i.imgur.com/KJAzftx.gif)
+![Initial Welcome Screen](https://imgur.com/a/KuBUrpW)
 
 ![Successful Signup](https://i.imgur.com/Ih72jol.gif)
 
@@ -56,14 +56,3 @@ Main screens:
 
 ![Forgot Password](https://i.imgur.com/HDvQMfp.png)
 
-## ⚠️⚠️⚠️
-
-Expo uses Firebase Web SDK and does not support all Firebase services such as phone auth. If you are looking forward to use those services, please use `react-native-firebase` in a vanilla react native app.
-
-[**Here is more on what and why Expo cannot support complete Firebase integration**](https://expo.canny.io/feature-requests/p/full-native-firebase-integration)
-
----
-
-<strong>Built by [@amanhimself](https://twitter.com/amanhimself)</strong>
-
-**Happy Coding!** 🎉🎉
