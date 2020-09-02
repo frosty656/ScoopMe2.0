@@ -16,23 +16,37 @@ Is a cheaper way to be able to share rides with other people who are actaully go
 - Join rides
 - Create rides
 - View ride history
+- Implimented new neuomorphic design 
 
 ## Tools used
 
-- Formik for form validation
-    - Login/Signup form built using Formik & yup
-- show/hide Password Field's visibility 👁
+- Formik and yup for form validation
+    - Login/Signup built with this
+    - show/hide Password Field's visibility 👁
 - uses Context API & checks user's auth state
-- implement Password Reset Screen
-- all components are now functional components and use [React Hooks](https://reactjs.org/docs/hooks-intro.html)
+-  Firebase for user authentication and data storage 
+
 
 ## Screens
 
 Main screens:
 
-- Login
-- Signup
-- Forgot password
+- Register
+    - Login
+    - Signup
+    - Forgot password
+- Tabs
+    - Current rides
+        - Ride info
+        - User information
+    - Map view
+    - Profile
+        - Ride history
+    - Settings
+        - Logout
+        - Change email
+        - Change name
+        - Change password
 
 ![Initial Welcome Screen](https://i.imgur.com/KJAzftx.gif)
 
