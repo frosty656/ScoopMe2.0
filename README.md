@@ -7,7 +7,7 @@
   <img alt="Supports Expo Android" longdesc="Supports Expo Android" src="https://img.shields.io/badge/Android-4630EB.svg?style=flat-square&logo=ANDROID&labelColor=A4C639&logoColor=fff" />  
 </p>
 
-Is a cheaper way to be able to share rides with other people who are actaully going close to the location that you are. No one is sitting around waiting for you.
+Give me a good idea to complete the rest
 
 ## Features
 - Create account
