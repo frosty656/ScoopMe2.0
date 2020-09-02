@@ -48,7 +48,7 @@ Main screens:
         - Change name
         - Change password
 
-![Initial Welcome Screen](https://imgur.com/a/KuBUrpW)
+![Initial Welcome Screen](https://i.imgur.com/ZCTgMqN.gif)
 
 ![Successful Signup](https://i.imgur.com/Ih72jol.gif)
 
