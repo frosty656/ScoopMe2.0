@@ -36,12 +36,11 @@ Main screens:
     - Signup
     - Forgot password
 - Tabs
-    - Current rides
-        - Ride info
-        - User information
+	- View with dummy data
     - Map view
     - Profile
-        - Ride history
+        - Name
+        - Image
     - Settings
         - Logout
         - Change email
