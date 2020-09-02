@@ -12,11 +12,11 @@ Is a cheaper way to be able to share rides with other people who are actaully go
 ## Features
 - Create account
 - Create profile
-- View others profile
-- Join rides
-- Create rides
-- View ride history
+    - Name
+    - Image
+- Change / Update information
 - Implimented new neuomorphic design 
+- Forgot password reset
 
 ## Tools used
 
