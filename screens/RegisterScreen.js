@@ -13,9 +13,6 @@ import { registerWithEmail } from '../components/Firebase/firebase';
 import useStatusBar from '../hooks/useStatusBar';
 
 const validationSchema = Yup.object().shape({
-  name: Yup.string()
-    .required()
-    .label('Name'),
   email: Yup.string()
     .required('Please enter a valid email')
     .email()
@@ -89,7 +86,7 @@ export default function RegisterScreen({ navigation }) {
           keyboardType="email-address"
           textContentType="emailAddress"
           borderRadius={100}
-          secureTextEntry={passwordVisibility}
+
         />
         <FormField
           name="password"
