@@ -1,40 +1,52 @@
-import * as React from 'react';
-import { Text, View, Button, TextInput } from 'react-native';
+import React, { useState } from 'react';
 
-import * as firebase from 'firebase';
-import 'firebase/auth';
-import 'firebase/firestore';
-import { firestore } from 'firebase';
 import {changeUsersName} from '../../components/Firebase/firebase'
 
-class RideScreen extends React.Component {
-    state = {
-        newName: "",
-    }
+import * as Yup from 'yup';
+import FormField from '../../components/Forms/FormField';
+import FormButton from '../../components/Forms/FormButton';
+import FormErrorMessage from '../../components/Forms/FormErrorMessage';
+import SafeView from '../../components/SafeView';
+import Form from '../../components/Forms/Form';
 
-    constructor(props){
-        super(props);
-    }
+const validationSchema = Yup.object().shape({
+    name: Yup.string()
+    .required('Please enter a name')
+    .min(1, 'Please enter name')
+    .label('name'),
+});
 
-    render() {
-        return(
-            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                <TextInput
-                    style={{ height: 40, width: 100, borderColor: 'gray', borderWidth: 1 }}
-                    onChangeText={text => {this.setState({newName: text})}}
-                />
-                <Button onPress={this.updateName} title="Update Name"/>
-            </View>
-        );
-    }
-
-    updateName =  () => {
+export default function ChangeName({navigation}){
+    const [changeNameError, setChangeNameError] = useState('');
+   
+    function handleUpdateName(values, actions){
+        console.log('Now entering the change name funciton')
+        const {name} = values;
         try{
-             changeUsersName(this.state.newName)
+             changeUsersName(name)
+             console.log('We are out of the change users name')
         } catch (error) {
-            console.log(error);
+            setChangeNameError(error.message)
         }   
     }
-}
 
-export default RideScreen;
+
+    return(
+        <SafeView>
+            <Form
+            initialValues={{name:''}}
+            validationSchema={validationSchema}
+            onSubmit={values => handleUpdateName(values)}
+            >
+                <FormField
+                    name="name"
+                    placeholder="John Smith"
+                    borderRadius={100}
+                />
+                <FormButton title={'Change Name'} />
+                {<FormErrorMessage error={changeNameError} visible={true}/>}
+            </Form>
+            
+        </SafeView>
+    );
+}

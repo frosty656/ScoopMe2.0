@@ -6,6 +6,8 @@ import * as Permissions from 'expo-permissions';
 //import {uploadImage} from '../../components/Firebase/firebase';
 import * as ImageManipulator from "expo-image-manipulator";
 
+import AppButton from '../../components/AppButton'
+
 import'firebase/storage'
 import * as firebase from 'firebase';
 import { auth } from '../../components/Firebase/firebase';
@@ -20,18 +22,20 @@ class ImagePickerExample extends React.Component {
     
     return (
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'flex-start' }}>
-        <Button title="Pick an image from camera roll" onPress={this._pickImage} />
-        <Image style={{ width: 200, height: 200 }} source={this.state.image ? { uri: this.state.image} : null}/>
+        
+        <Image style={{ width: 200, height: 200}} source={this.state.image ? { uri: this.state.image} : null}/>
         {this.showUpdateButton()}
+
+        
       </View>
     );
   }
 
   showUpdateButton(){
     if(this.state.image != ""){
-      return (<Button title="Upload to FireBase" onPress={this.uploadToFirebase}/>)
+      return (<AppButton title="Upload to FireBase" onPress={this.uploadToFirebase}/>)
     } else {
-      return null
+      return(<AppButton title="Pick an image" onPress={this._pickImage}/>)
     }
   }
 
