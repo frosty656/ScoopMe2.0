@@ -8,6 +8,9 @@ const Stack = createStackNavigator();
 
 export default function AppStack() {
   return (
+    //Check if there is a users name
+    //Check if there is a users profile image if it is thier first time signing up
+    //If all that is good then go to the tab bars
     <TabBars/>
   );
 }
