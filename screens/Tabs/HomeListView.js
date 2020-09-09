@@ -10,7 +10,7 @@ const Stack = createStackNavigator();
 export default function HomeListStack() {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="HomeList" component={HomeList} options={{headerShown: false}}/>
+      <Stack.Screen name="Rides" component={HomeList} options={{headerShown: false}}/>
       <Stack.Screen name="DetailScreen" component={DetailScreen} />
     </Stack.Navigator>
   );
