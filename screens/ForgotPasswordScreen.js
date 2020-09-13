@@ -57,7 +57,7 @@ export default function ForgotPasswordScreen({ navigation }) {
       <IconButton
         style={styles.backButton}
         iconName="keyboard-backspace"
-        color={Colors.white}
+        color={Colors.blue}
         size={30}
         onPress={() => navigation.goBack()}
       />
@@ -68,11 +68,12 @@ export default function ForgotPasswordScreen({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     padding: 15,
-    backgroundColor: Colors.mediumGrey
+    backgroundColor: Colors.white
   },
   backButton: {
     justifyContent: 'center',
     alignItems: 'center',
-    marginVertical: 10
+    marginVertical: 10,
+    padding: 10
   }
 });

@@ -8,6 +8,7 @@ export default function AppButton({ title, onPress, width, height}) {
   return (
     <View style={styles.border}>
     <NeuButton
+        padding={15}
         width={width || 300}
         height={height || 50}
         borderRadius={16}
@@ -16,7 +17,7 @@ export default function AppButton({ title, onPress, width, height}) {
         <Text style={styles.buttonText}>{title}</Text>
       </NeuButton>
     </View>
-    
+
   );
 }
 
@@ -35,8 +36,8 @@ const styles = StyleSheet.create({
     textTransform: 'uppercase'
   },
   border:{
+    padding: 15,
     alignItems: 'center',
     justifyContent: 'center',
-
   }
 });

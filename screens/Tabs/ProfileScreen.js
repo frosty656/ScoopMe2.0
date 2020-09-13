@@ -10,12 +10,14 @@ class SettingsScreen extends React.Component {
     constructor(props) {
         super(props)
     }
+
     render() {
         return (
-        <SafeView style={{ flex: 1, justifyContent: 'flex-start', alignItems: 'center' }}>
-            <Text style={{fontSize: 50}}>Profile!</Text>
+        <SafeView style={{ flex: 1, justifyContent: 'flex-start', alignItems: 'center' , paddingTop: 30}}>
             <ProfilePicture/>
-            <Text style={{fontSize: 30}}>{auth.currentUser.displayName}</Text>
+            <Text style={{fontSize: 25, padding: 15,}}>{auth.currentUser.displayName}</Text>
+
+            <Text style={{fontSize: 15, padding: 10}}>{"Passenger"}</Text>
         </SafeView>
         );
     }

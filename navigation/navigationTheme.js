@@ -7,7 +7,7 @@ const navigationTheme = {
   // override colors
   colors: {
     ...DefaultTheme.colors,
-    primary: Colors.black,
+    primary: Colors.blue,
     text: Colors.black,
     border: Colors.mediumGrey,
     background: Colors.ghostWhite

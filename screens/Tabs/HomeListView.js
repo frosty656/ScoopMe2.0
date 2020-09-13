@@ -4,7 +4,6 @@ import { createStackNavigator } from '@react-navigation/stack';
 import HomeList from './RideScreen'
 import DetailScreen from './RideDetailScreen'
 
-
 const Stack = createStackNavigator();
 
 export default function HomeListStack() {

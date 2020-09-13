@@ -16,23 +16,16 @@ export default function Settings({navigation}) {
                     <AppButton
                         title="Change Profile Image"
                         onPress={() => navigation.navigate('ChangeImage')}
-                        width={300} 
+                        width={300}
                         height={40}
                     />
                 </View>
-                <View style={styles.buttonContainer}>
-                    <AppButton
-                        title="Change Profile Image"
-                        onPress={() => navigation.navigate('ChangeImage')}
-                        width={300} 
-                        height={40}
-                    />
-                </View>
+
                 <View style={styles.buttonContainer}>
                     <AppButton
                         title="Change Name"
                         onPress={() => navigation.navigate('ChangeName')}
-                        width={300} 
+                        width={300}
                         height={40}
                     />
                 </View>
@@ -40,7 +33,7 @@ export default function Settings({navigation}) {
                     <AppButton
                         title="Logout"
                         onPress={() => logout()}
-                        width={300} 
+                        width={300}
                         height={40}
                     />
                 </View>
@@ -51,8 +44,8 @@ export default function Settings({navigation}) {
 
 const styles = StyleSheet.create({
     container: {
-        justifyContent: 'flex-start', 
-        alignItems: 'center', 
+        justifyContent: 'flex-start',
+        alignItems: 'center',
         marginVertical: 30,
         padding: 15,
         backgroundColor: Colors.primary

@@ -18,16 +18,16 @@ const validationSchema = Yup.object().shape({
 
 export default function ChangeName({navigation}){
     const [changeNameError, setChangeNameError] = useState('');
-   
+
     function handleUpdateName(values, actions){
-        console.log('Now entering the change name funciton')
+        console.log('Now entering the change name function')
         const {name} = values;
         try{
              changeUsersName(name)
              console.log('We are out of the change users name')
         } catch (error) {
             setChangeNameError(error.message)
-        }   
+        }
     }
 
 
@@ -46,7 +46,7 @@ export default function ChangeName({navigation}){
                 <FormButton title={'Change Name'} />
                 {<FormErrorMessage error={changeNameError} visible={true}/>}
             </Form>
-            
+
         </SafeView>
     );
 }

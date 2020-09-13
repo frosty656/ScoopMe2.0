@@ -37,7 +37,7 @@ export default function LoginScreen({ navigation }) {
     } else if (rightIcon === 'eye-off') {
       setRightIcon('eye');
       setPasswordVisibility(!passwordVisibility);
-      
+
     }
   }
 
@@ -61,7 +61,7 @@ export default function LoginScreen({ navigation }) {
         <FormField
           name="email"
           leftIcon="email"
-          placeholder="Enter email"
+          placeholder="Email"
           autoCapitalize="none"
           keyboardType="email-address"
           textContentType="emailAddress"
@@ -73,7 +73,7 @@ export default function LoginScreen({ navigation }) {
         <FormField
           name="password"
           leftIcon="lock"
-          placeholder="Enter password"
+          placeholder="Password"
           autoCapitalize="none"
           autoCorrect={false}
           secureTextEntry={passwordVisibility}
@@ -82,19 +82,20 @@ export default function LoginScreen({ navigation }) {
           handlePasswordVisibility={handlePasswordVisibility}
           borderRadius={100}
         />
-        
+
         <FormButton title={'Login'} />
         {<FormErrorMessage error={loginError} visible={true} />}
       </Form>
       <View style={styles.footerButtonContainer}>
         <TouchableOpacity onPress={() => navigation.navigate('ForgotPassword')}>
-          <Text style={styles.forgotPasswordButtonText}>Forgot Password?</Text>
+          <Text style={styles.forgotPasswordButtonText}>Forgot Password? </Text>
         </TouchableOpacity>
       </View>
       <IconButton
         style={styles.backButton}
         iconName="keyboard-backspace"
         size={30}
+        color={Colors.blue}
         onPress={() => navigation.goBack()}
       />
     </SafeView>
@@ -103,6 +104,7 @@ export default function LoginScreen({ navigation }) {
 
 const styles = StyleSheet.create({
   container: {
+    paddingTop: 70,
     padding: 15,
     backgroundColor: Colors.primary,
     alignItems: 'center',
@@ -113,12 +115,13 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   forgotPasswordButtonText: {
-    color: Colors.black,
-    fontSize: 18,
-    fontWeight: '600'
+    color: Colors.blue,
+    paddingTop: 10,
+    fontSize: 16,
+    fontWeight: '400'
   },
   backButton: {
-    color: Colors.black,
+    color: Colors.blue,
     justifyContent: 'center',
     alignItems: 'center'
   },

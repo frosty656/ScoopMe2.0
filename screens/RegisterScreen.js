@@ -81,17 +81,17 @@ export default function RegisterScreen({ navigation }) {
         <FormField
           name="email"
           leftIcon="email"
-          placeholder="Enter email"
+          placeholder="Email"
           autoCapitalize="none"
           keyboardType="email-address"
           textContentType="emailAddress"
           borderRadius={100}
-
         />
+
         <FormField
           name="password"
           leftIcon="lock"
-          placeholder="Enter password"
+          placeholder="Password"
           autoCapitalize="none"
           autoCorrect={false}
           secureTextEntry={passwordVisibility}
@@ -100,6 +100,7 @@ export default function RegisterScreen({ navigation }) {
           handlePasswordVisibility={handlePasswordVisibility}
           borderRadius={100}
         />
+
         <FormField
           name="confirmPassword"
           leftIcon="lock"
@@ -112,13 +113,14 @@ export default function RegisterScreen({ navigation }) {
           handlePasswordVisibility={handleConfirmPasswordVisibility}
           borderRadius={100}
         />
+
         <FormButton title={'Register'} />
         {<FormErrorMessage error={registerError} visible={true} />}
       </Form>
       <IconButton
         style={styles.backButton}
         iconName="keyboard-backspace"
-        color={Colors.black}
+        color={Colors.blue}
         size={30}
         onPress={() => navigation.goBack()}
       />
@@ -128,11 +130,13 @@ export default function RegisterScreen({ navigation }) {
 
 const styles = StyleSheet.create({
   container: {
+    paddingTop: 70,
     padding: 15,
     backgroundColor: Colors.primary
   },
   backButton: {
     justifyContent: 'center',
+    padding: 10,
     alignItems: 'center',
     marginVertical: 10,
   }

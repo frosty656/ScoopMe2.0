@@ -19,21 +19,21 @@ class ImagePickerExample extends React.Component {
   };
 
   render() {
-    
+
     return (
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'flex-start' }}>
-        
-        <Image style={{ width: 200, height: 200}} source={this.state.image ? { uri: this.state.image} : null}/>
+      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'flex-start', padding: 25 }}>
+
+        <Image style={{ width: 200, height: 200, paddingTop: 35}} source={this.state.image ? { uri: this.state.image} : null}/>
         {this.showUpdateButton()}
 
-        
+
       </View>
     );
   }
 
   showUpdateButton(){
     if(this.state.image != ""){
-      return (<AppButton title="Upload to FireBase" onPress={this.uploadToFirebase}/>)
+      return (<AppButton title="Update Image" onPress={this.uploadToFirebase}/>)
     } else {
       return(<AppButton title="Pick an image" onPress={this._pickImage}/>)
     }
@@ -42,9 +42,9 @@ class ImagePickerExample extends React.Component {
   uploadImage = async (uri) => {
     const response = await fetch(uri);
     const blob = await response.blob();
-  
+
     var ref = firebase.storage().ref().child("profileImages/" + auth.currentUser.uid)
-  
+
     return ref.put(blob)
   }
 
@@ -59,7 +59,7 @@ class ImagePickerExample extends React.Component {
           console.log(error);
       }
     }
-    
+
 
   getPermissionAsync = async () => {
     if (Constants.platform.ios) {
