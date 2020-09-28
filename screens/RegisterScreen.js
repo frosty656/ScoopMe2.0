@@ -30,8 +30,8 @@ export default function RegisterScreen({ navigation }) {
   useStatusBar('light-content');
 
   const [passwordVisibility, setPasswordVisibility] = useState(true);
-  const [rightIcon, setRightIcon] = useState('eye');
-  const [confirmPasswordIcon, setConfirmPasswordIcon] = useState('eye');
+  const [rightIcon, setRightIcon] = useState('eye-off');
+  const [confirmPasswordIcon, setConfirmPasswordIcon] = useState('eye-off');
   const [confirmPasswordVisibility, setConfirmPasswordVisibility] = useState(
     true
   );
@@ -86,6 +86,7 @@ export default function RegisterScreen({ navigation }) {
           keyboardType="email-address"
           textContentType="emailAddress"
           borderRadius={100}
+          secureTextEntry={false}
 
         />
         <FormField

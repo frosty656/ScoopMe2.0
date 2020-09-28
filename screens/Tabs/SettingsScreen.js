@@ -22,14 +22,6 @@ export default function Settings({navigation}) {
                 </View>
                 <View style={styles.buttonContainer}>
                     <AppButton
-                        title="Change Profile Image"
-                        onPress={() => navigation.navigate('ChangeImage')}
-                        width={300} 
-                        height={40}
-                    />
-                </View>
-                <View style={styles.buttonContainer}>
-                    <AppButton
                         title="Change Name"
                         onPress={() => navigation.navigate('ChangeName')}
                         width={300} 

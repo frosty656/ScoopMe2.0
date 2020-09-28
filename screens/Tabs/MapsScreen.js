@@ -1,6 +1,6 @@
 import React from 'react';
 import MapView from 'react-native-maps';
-import { StyleSheet, Text, View, Dimensions } from 'react-native';
+import { StyleSheet, View, Dimensions, Button } from 'react-native';
 import * as Location from 'expo-location';
 import * as Permissions from 'expo-permissions';
 
@@ -47,13 +47,19 @@ class MapViewExample extends React.Component {
     return (
 
         <View style={styles.container}>
-            <Text style={styles.buttonStyle}>Yo Yo Yo</Text>
+          <View zIndex={1}>
             <MapView
             style={styles.mapStyle}
             region={this.state.mapRegion}
             onRegionChange={this.handleMapRegionChange}
             />
-            
+          </View>
+
+          <View zIndex={2} style={styles.floatingButton}>
+            <Button style={styles.buttonStyle} title="Add Ride" onPress={() => console.log("Button Clicked")} />
+
+          </View>
+
         </View>
 
     );
@@ -64,20 +70,32 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: 'flex-end',
+    justifyContent: 'flex-start',
   },
   buttonStyle: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    zIndex: 5,
-    fontSize: 50,
+    marginRight:40,
+    marginLeft:40,
+    marginTop:10,
+    paddingTop:10,
+    paddingBottom:10,
+    backgroundColor:'#1E6738',
+    borderRadius:10,
+    borderWidth: 1,
+    borderColor: '#fff'
   },
   mapStyle: {
     width: Dimensions.get('window').width,
     height: Dimensions.get('window').height,
   },
+
+  floatingButton: {
+    position: 'absolute', 
+    padding: 20,
+    transform: [
+      {translateY: 30}
+    ]
+  }
 });
 
 export default MapViewExample;
