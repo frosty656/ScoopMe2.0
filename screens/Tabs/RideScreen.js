@@ -12,7 +12,7 @@ import { Component } from 'react';
 class RideScreen extends Component{
 
     state = {
-        trips: {},
+        trips: [],
     }
 
     constructor(props){
@@ -50,6 +50,7 @@ class RideScreen extends Component{
         return(
             <SafeAreaView style={{flex: 1, alignItems: 'center'}}>
             <Text style={{fontSize: 50, flex: 1}}>Trips:</Text>
+
             <View style={{flexDirection: 'row', flex: 9}}>
                 <FlatList 
                     contentContainerStyle={{flexGrow: 1}}
