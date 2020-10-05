@@ -37,9 +37,11 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.primary
   },
   logoContainer: {
+    paddingTop: 150,
+    paddingLeft: 5,
     position: 'absolute',
     top: 60,
-    alignItems: 'center'
+    alignItems: 'center',
   },
   logo: {
     width: 125,
@@ -49,7 +51,7 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: '600',
     paddingVertical: 20,
-    color: Colors.black
+    color: Colors.blue
   },
   buttonContainer: {
     padding: 20,

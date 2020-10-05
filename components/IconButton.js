@@ -6,7 +6,7 @@ import Colors from '../utils/colors'
 
 export default function IconButton({ iconName, color, size, onPress, style }) {
   return (
-    <TouchableOpacity style={[style]} onPress={onPress}>
+    <TouchableOpacity style={{ marginRight: "auto", paddingLeft: 5, paddingBottom: 20 }} onPress={onPress}>
       <NeuButton
         width={size || 300}
         height={size || 50}

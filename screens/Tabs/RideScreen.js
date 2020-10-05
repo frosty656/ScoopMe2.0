@@ -4,10 +4,11 @@ import { Text, View, Button, TextInput, SafeAreaView, FlatList } from 'react-nat
 import 'firebase/firestore';
 import { firestore } from 'firebase';
 
-import IconButton from '../../components/IconButton'
+import IconButton from '../../components/IconButton';
 import { useState } from 'react';
 import { render } from 'react-dom';
 import { Component } from 'react';
+import CarIcon from '../../components/CarIcon';
 
 class RideScreen extends Component{
 
@@ -18,7 +19,7 @@ class RideScreen extends Component{
     constructor(props){
         super(props)
         this.handleGetData();
-        
+
     }
 
     handleGetData() {
@@ -37,9 +38,10 @@ class RideScreen extends Component{
         return (
             <View style={{flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 20, paddingVertical: 5}}>
                 <Text style={{fontSize: 20}}>{item.Deliverer}</Text>
-                <IconButton
-                    iconName="arrow-right"
+                <CarIcon
+                    iconName="truck"
                     size={30}
+                    padding={5}
                     onPress={() => this.props.navigation.navigate('DetailScreen', {item})}
                 />
             </View>
@@ -51,7 +53,7 @@ class RideScreen extends Component{
             <SafeAreaView style={{flex: 1, alignItems: 'center'}}>
             <Text style={{fontSize: 50, flex: 1}}>Trips:</Text>
             <View style={{flexDirection: 'row', flex: 9}}>
-                <FlatList 
+                <FlatList
                     contentContainerStyle={{flexGrow: 1}}
                     data={this.state.trips}
                     keyExtractor={(item) => item.id}

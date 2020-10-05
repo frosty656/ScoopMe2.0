@@ -37,6 +37,14 @@ export default function ForgotPasswordScreen({ navigation }) {
 
   return (
     <SafeView style={styles.container}>
+      <IconButton
+          style={styles.backButton}
+          iconName="keyboard-backspace"
+          color={Colors.blue}
+          size={40}
+          onPress={() => navigation.goBack()}
+      />
+
       <Form
         initialValues={{ email: '' }}
         validationSchema={validationSchema}
@@ -49,26 +57,22 @@ export default function ForgotPasswordScreen({ navigation }) {
           autoCapitalize="none"
           keyboardType="email-address"
           textContentType="emailAddress"
+          borderRadius={20}
           autoFocus={true}
         />
         <FormButton title="Forgot Password" />
         {<FormErrorMessage error={customError} visible={true} />}
       </Form>
-      <IconButton
-        style={styles.backButton}
-        iconName="keyboard-backspace"
-        color={Colors.white}
-        size={30}
-        onPress={() => navigation.goBack()}
-      />
+
     </SafeView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
+    paddingTop: 20,
     padding: 15,
-    backgroundColor: Colors.mediumGrey
+    backgroundColor: Colors.ghostWhite,
   },
   backButton: {
     justifyContent: 'center',

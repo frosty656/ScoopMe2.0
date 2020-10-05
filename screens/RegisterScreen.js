@@ -68,6 +68,14 @@ export default function RegisterScreen({ navigation }) {
 
   return (
     <SafeView style={styles.container}>
+
+      <IconButton
+          style={styles.backButton}
+          iconName="keyboard-backspace"
+          size={40}
+          color={Colors.blue}
+          onPress={() => navigation.goBack()}
+      />
       <Form
         initialValues={{
           name: '',
@@ -85,7 +93,7 @@ export default function RegisterScreen({ navigation }) {
           autoCapitalize="none"
           keyboardType="email-address"
           textContentType="emailAddress"
-          borderRadius={100}
+          borderRadius={20}
           secureTextEntry={false}
 
         />
@@ -99,7 +107,7 @@ export default function RegisterScreen({ navigation }) {
           textContentType="password"
           rightIcon={rightIcon}
           handlePasswordVisibility={handlePasswordVisibility}
-          borderRadius={100}
+          borderRadius={20}
         />
         <FormField
           name="confirmPassword"
@@ -111,30 +119,25 @@ export default function RegisterScreen({ navigation }) {
           textContentType="password"
           rightIcon={confirmPasswordIcon}
           handlePasswordVisibility={handleConfirmPasswordVisibility}
-          borderRadius={100}
+          borderRadius={20}
         />
         <FormButton title={'Register'} />
         {<FormErrorMessage error={registerError} visible={true} />}
       </Form>
-      <IconButton
-        style={styles.backButton}
-        iconName="keyboard-backspace"
-        color={Colors.black}
-        size={30}
-        onPress={() => navigation.goBack()}
-      />
     </SafeView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    padding: 15,
-    backgroundColor: Colors.primary
+    paddingTop: 20,
+    padding: 20,
+    backgroundColor: Colors.primary,
   },
   backButton: {
     justifyContent: 'center',
     alignItems: 'center',
+    padding: 10,
     marginVertical: 10,
   }
 });
