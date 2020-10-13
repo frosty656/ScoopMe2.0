@@ -15,7 +15,7 @@ export default function Settings({navigation}) {
                 <View style={styles.buttonContainer}>
                     <AppButton
                         title="Change Profile Image"
-                        onPress={() => navigation.navigate('ChangeImage')}
+                        onPress={() => navigation.navigate('Change Image')}
                         width={300} 
                         height={40}
                     />
@@ -23,8 +23,24 @@ export default function Settings({navigation}) {
                 <View style={styles.buttonContainer}>
                     <AppButton
                         title="Change Name"
-                        onPress={() => navigation.navigate('ChangeName')}
+                        onPress={() => navigation.navigate('Change Name')}
                         width={300} 
+                        height={40}
+                    />
+                </View>
+                <View style={styles.buttonContainer}>
+                    <AppButton
+                        title="Change Email"
+                        onPress={() => navigation.navigate('Change Email')}
+                        width={300}
+                        height={40}
+                    />
+                </View>
+                <View style={styles.buttonContainer}>
+                    <AppButton
+                        title="Change Password"
+                        onPress={() => navigation.navigate('Change Password')}
+                        width={300}
                         height={40}
                     />
                 </View>
