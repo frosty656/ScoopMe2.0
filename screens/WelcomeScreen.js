@@ -7,7 +7,6 @@ import useStatusBar from '../hooks/useStatusBar';
 
 export default function WelcomeScreen({ navigation }) {
   useStatusBar('light-content');
-
   return (
     <View style={styles.container}>
       <View style={styles.logoContainer}>

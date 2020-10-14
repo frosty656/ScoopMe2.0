@@ -36,7 +36,10 @@ class RideScreen extends Component{
     renderRow(item) {
         return (
             <View style={{flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 20, paddingVertical: 5}}>
-                <Text style={{fontSize: 20}}>{item.Deliverer}</Text>
+                <View style={{flexDirection: 'column'}}>
+                    <Text style={{fontSize: 20}}>Destination: {item.title}</Text>
+                    <Text style={{fontSize: 15}}>Driver: {item.deliverer}</Text>
+                </View>
                 <IconButton
                     iconName="arrow-right"
                     size={30}

@@ -3,7 +3,6 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Feather } from '@expo/vector-icons';
 
 
-import rideScreen from '../screens/Tabs/RideScreen'
 import settingsStack from '../screens/Tabs/SettingsStack'
 import mapView from '../screens/Tabs/MapsScreen'
 import profileScreen from '../screens/Tabs/ProfileScreen'

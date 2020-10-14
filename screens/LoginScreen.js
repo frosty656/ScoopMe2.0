@@ -25,21 +25,8 @@ const validationSchema = Yup.object().shape({
 
 export default function LoginScreen({ navigation }) {
   useStatusBar('light-content');
-
-  const [passwordVisibility, setPasswordVisibility] = useState(true);
-  const [rightIcon, setRightIcon] = useState('eye-off');
   const [loginError, setLoginError] = useState('');
 
-  function handlePasswordVisibility() {
-    if (rightIcon === 'eye') {
-      setRightIcon('eye-off');
-      setPasswordVisibility(!passwordVisibility);
-    } else if (rightIcon === 'eye-off') {
-      setRightIcon('eye');
-      setPasswordVisibility(!passwordVisibility);
-      
-    }
-  }
 
   async function handleOnLogin(values) {
     const { email, password } = values;
@@ -70,33 +57,10 @@ export default function LoginScreen({ navigation }) {
           secureTextEntry={false}
         />
 
-        <FormField
-          name="password"
-          leftIcon="lock"
-          placeholder="Enter password"
-          autoCapitalize="none"
-          autoCorrect={false}
-          secureTextEntry={passwordVisibility}
-          textContentType="password"
-          rightIcon={rightIcon}
-          handlePasswordVisibility={handlePasswordVisibility}
-          borderRadius={100}
-        />
         
-        <FormButton title={'Login'} />
+        <FormButton title={'Go Here'} />
         {<FormErrorMessage error={loginError} visible={true} />}
       </Form>
-      <View style={styles.footerButtonContainer}>
-        <TouchableOpacity onPress={() => navigation.navigate('ForgotPassword')}>
-          <Text style={styles.forgotPasswordButtonText}>Forgot Password?</Text>
-        </TouchableOpacity>
-      </View>
-      <IconButton
-        style={styles.backButton}
-        iconName="keyboard-backspace"
-        size={30}
-        onPress={() => navigation.goBack()}
-      />
     </SafeView>
   );
 }

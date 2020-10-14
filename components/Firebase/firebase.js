@@ -2,6 +2,7 @@ import * as firebase from 'firebase';
 import 'firebase/auth';
 
 import firebaseConfig from './firebaseConfig';
+import 'firebase/firestore';
 
 // Initialize Firebase App
 
@@ -28,4 +29,17 @@ export const changeUsersName = (name) => {
 
 export const changeUseresProfileImage = (imageURI) => {
   auth.currentUser.updateProfile({photoURL: imageURI})
+}
+
+export const newRide = (title, destLng, destLat, startLng, startLat,leaveTime, desc, deliverer = "John Smith") => {
+  firebase.firestore().collection("Trips").add({
+    "title": title,
+    "destLng": destLng, 
+    "destLat": destLat, 
+    "startLng": startLng, 
+    "startLat": startLat,
+    "leaveTime": leaveTime,
+    "description": desc,
+    "deliverer": deliverer
+  })
 }
