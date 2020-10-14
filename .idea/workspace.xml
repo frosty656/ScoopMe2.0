@@ -2,12 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="20c131bc-4648-4651-a57f-925283a80399" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/assets/default picture.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/screens/ChangeInfos/ChangeEmail.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/screens/ChangeInfos/ChangePassword.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/defaultUserImage.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/screens/Tabs/SettingsScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/screens/Tabs/SettingsScreen.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/screens/Tabs/SettingsStack.js" beforeDir="false" afterPath="$PROJECT_DIR$/screens/Tabs/SettingsStack.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/screens/RegisterScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/screens/RegisterScreen.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/screens/Tabs/ProfilePictureScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/screens/Tabs/ProfilePictureScreen.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,9 +60,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="92" y="92" width="1736" height="856" key="com.android.tools.idea.avdmanager.AvdListDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1602608562915" />
-    <state x="656" y="252" width="607" height="536" key="find.popup" timestamp="1602625640388">
+    <state x="656" y="252" width="607" height="536" key="find.popup" timestamp="1602631503968">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
+    <state x="656" y="252" width="607" height="536" key="find.popup/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1602631503968" />
     <state x="656" y="252" width="607" height="536" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1602625640388" />
   </component>
 </project>

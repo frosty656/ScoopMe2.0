@@ -9,7 +9,7 @@ import FormField from '../components/Forms/FormField';
 import FormButton from '../components/Forms/FormButton';
 import IconButton from '../components/IconButton';
 import FormErrorMessage from '../components/Forms/FormErrorMessage';
-import { registerWithEmail } from '../components/Firebase/firebase';
+import { registerWithEmail, changeUsersName } from '../components/Firebase/firebase';
 import useStatusBar from '../hooks/useStatusBar';
 
 const validationSchema = Yup.object().shape({
@@ -61,6 +61,7 @@ export default function RegisterScreen({ navigation }) {
     const { email, password } = values;
     try {
       await registerWithEmail(email, password);
+      changeUsersName(email.split('@')[0]);
     } catch (error) {
       setRegisterError(error.message);
     }

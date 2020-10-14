@@ -20,7 +20,7 @@ class ProfilePicture extends React.Component {
     }
 
     render(){
-        if(this.state.imagePath != ""){
+        if(this.state.profileImageUrl != ""){
             return(
                 <View>
                     <Image source={{ uri: this.state.profileImageUrl }} style={{ width: 150, height: 150, borderRadius: 400/ 2 }} />
@@ -28,7 +28,9 @@ class ProfilePicture extends React.Component {
             )
         } else {
             return(
-                <View> <ActivityIndicator /></View>
+                <View>
+                    <Image source={require("../../assets/defaultUserImage.png")} style={{ width: 150, height: 150, borderRadius: 400/ 2 }}/>
+                </View>
             )
         }
     }
