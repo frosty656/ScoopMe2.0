@@ -49,6 +49,7 @@ class RideScreen extends Component{
     }
 
     render(){
+            console.disableYellowBox = true; // remove all warnings
         return(
 
             <SafeAreaView style={{flex: 1, alignItems: 'center'}}>
