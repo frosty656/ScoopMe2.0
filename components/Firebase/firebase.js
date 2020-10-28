@@ -31,7 +31,7 @@ export const changeUseresProfileImage = (imageURI) => {
   auth.currentUser.updateProfile({photoURL: imageURI})
 }
 
-export const newRide = (title, destLng, destLat, startLng, startLat,leaveTime, desc, deliverer = "John Smith") => {
+export const newRide = (title, destLng, destLat, startLng, startLat,leaveTime, desc, deliverer = "John Smith", seats) => {
   firebase.firestore().collection("Trips").add({
     "title": title,
     "destLng": destLng, 
@@ -40,6 +40,7 @@ export const newRide = (title, destLng, destLat, startLng, startLat,leaveTime, d
     "startLat": startLat,
     "leaveTime": leaveTime,
     "description": desc,
-    "deliverer": deliverer
+    "deliverer": deliverer,
+    "seats": seats
   })
 }

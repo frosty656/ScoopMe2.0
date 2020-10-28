@@ -1,7 +1,7 @@
 import React from 'react';
 import AppButton from '../../components/AppButton'
 import SafeView from '../../components/SafeView';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet} from 'react-native';
 import { format } from "date-fns";
 import MapView, {Marker} from 'react-native-maps';
 
@@ -17,6 +17,7 @@ export default function ChangeName({route, navigation}){
                  
                  <Text style={styles.text}>Destination: {item.title}</Text>
                  <Text style={styles.text}>Notes: {item.description}</Text>
+                 <Text style={styles.text}>Seats: {item.seats}</Text>
             </View>
 
             <MapView
