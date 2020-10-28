@@ -18,7 +18,6 @@ class RideScreen extends Component{
     constructor(props){
         super(props)
         this.handleGetData();
-        
     }
 
     handleGetData() {
@@ -50,18 +49,28 @@ class RideScreen extends Component{
     }
 
     render(){
+            console.disableYellowBox = true; // remove all warnings
         return(
+
             <SafeAreaView style={{flex: 1, alignItems: 'center'}}>
             <Text style={{fontSize: 50, flex: 1}}>Trips:</Text>
 
             <View style={{flexDirection: 'row', flex: 9}}>
-                <FlatList 
+                <FlatList
                     contentContainerStyle={{flexGrow: 1}}
                     data={this.state.trips}
                     keyExtractor={(item) => item.id}
                     renderItem={({ item }) => this.renderRow(item)}
                 />
             </View>
+                <View>
+                    <IconButton
+                        iconName="email"
+                        size={45}
+                        style={{paddingLeft: 300, paddingBottom: 20}}
+                        onPress={() => this.props.navigation.navigate('Messages')}>
+                    </IconButton>
+                </View>
         </SafeAreaView>
         )
     }
