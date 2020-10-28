@@ -28,7 +28,8 @@ class MapViewExample extends React.Component {
     seats: 4,
     desc: "",
 
-    informationState: 1
+    pickup: false,
+    rideAlong: false,
   };
 
 
@@ -106,112 +107,109 @@ class MapViewExample extends React.Component {
       return null
     }
   }
-/*
-  //Fill in the data object that we have for ride information
-  handleRideInformation = () => {
-      //Get time
-      if(this.state.informationState == 2){
-        return (
-          <View style={styles.timePicker}>
-            <View backgroundColor={'white'} borderColor={'black'} borderWidth={3} borderRadius={5}>
-            <DateTimePicker
-              testID="dateTimePicker"
-              value={this.state.leaveTime}
-              mode={'time'}
-              is24Hour={true}
-              display="default"
-              onChange={ (event, selectedDate) => {this.setState({leaveTime: selectedDate})}}
-            />
-             <Button style={styles.buttonStyle} title="Set Time" onPress={() => this.setState({informationState: 3})} />
-            </View>
-          </View>
 
-        )
-      }
-      //Description
-      if(this.state.informationState == 3) {
-        return (
-          <View style={styles.rideButton}>
-            <View backgroundColor={'white'} borderColor={'black'} borderWidth={3} borderRadius={5}>
-              <TextInput style={{ height: 40, borderColor: 'gray', borderWidth: 1 }} onChangeText={text => this.setState({desc: text})}/>
-             <Button style={styles.buttonStyle} title="Add Notes" onPress={() => this.setState({informationState: 4})} />
-            </View>
-          </View>
-        )
-      }
-      //Seats
-      if(this.state.informationState == 4) {
-        return (
-          <View style={styles.rideButton}>
-            <View backgroundColor={'white'} borderColor={'black'} borderWidth={3} borderRadius={5}>
-             <Text>{this.state.seats}</Text>
-             <Button style={styles.buttonStyle} title="Set Available Seats" onPress={() => this.setState({informationState: 5})} />
-            </View>
-          </View>
-        )
-      }
-      if(this.state.informationState == 5) {
-        return (
-          <View style={styles.rideButton}>
-            <View backgroundColor={'white'} borderColor={'black'} borderWidth={3} borderRadius={1}>
-             <Button style={styles.buttonStyle} title="Set Ride" onPress={
-               () => newRide(
-                 //title, destLng, destLat, startLng, startLat,leaveTime, desc, seats
-                 this.state.marker.title,
-                 this.state.marker.lng,
-                 this.state.marker.lat,
-                 this.state.currentLocation.lng,
-                 this.state.currentLocation.lat,
-                 new Date(1598051730000),
-                 //this.state.leaveTime,
-                 this.state.desc, 
-                 "John Smith",
-                 this.state.seats
-
-               )
-               } />
-            </View>
-          </View>
-        )
-      }
-
+  handlePickupInformation = () => {
+    if(this.state.pickup){
+      return (
+        <ScrollView 
+        horizontal
+        pagingEnabled
+        scrollEventThrottle={1}
+        showsHorizontalScrollIndicator={false}
+        snapToInterval={CARD_WIDTH + 20}
+        snapToAlignment="center"
+        style = {styles.scrollView}
+      >
+        <View style={styles.card}>
+          <Button title="Back" onPress={() => {this.setState({pickup: false})}}/>
+        </View>
+        <View style={styles.card}>
+          <Text>Write a note</Text>
+          <TextInput style={{ height: 40, borderColor: 'gray', borderWidth: 1, borderRadius: 5 }} onChangeText={text => this.setState({desc: text})}/>
+        </View>
+        <View style={styles.card}>
+        <Button title="Submit" onPress={() => {this.setState({pickup: false})}}/>
+        </View>
+      </ScrollView>
+          )
+    } else {
       return null
-    
-    //assign title, start and end lat / lng
-
-    //prompt for time
-    //Prompt for description
+    }
   }
-*/
+
+  handleDecisionMaking = () => {
+    if(this.state.rideAlong == false && this.state.pickup == false){
+      return(
+        <ScrollView style={styles.scrollView}>
+        <View style={styles.card}>
+          <Button title = "Pickup" onPress={() => {this.setState({pickup: true})}}/>
+          <Button title = "Ride Along" onPress={() => {this.setState({rideAlong: true})}}/>
+        </View>
+        </ScrollView>
+      )
+      } else {
+        return null
+      }
+  }
+
   handleRideInformation = () => {
-    return(
-      <ScrollView 
-      horizontal
-      pagingEnabled
-      scrollEventThrottle={1}
-      showsHorizontalScrollIndicator={false}
-      snapToInterval={CARD_WIDTH + 20}
-      snapToAlignment="center"
-      style = {styles.scrollView}
-    >
-      <View style={styles.card}>
-        <Text>Date Time Picker</Text>
-        <Text>This will have a time picker</Text>
-      </View>
-      <View style={styles.card}>
-        <Text>Seats</Text>
-        <Text>This will have a number picker</Text>
-      </View>
-      <View style={styles.card}>
-        <Text>Additional Notes</Text>
-        <Text>This will have a text input</Text>
-      </View>
-      <View style={styles.card}>
-        <Text>Button to submit</Text>
-        <Text>This will have a button</Text>
-      </View>
-    </ScrollView>
-    )
+    //This is for if you are driving people
+    if(this.state.rideAlong){
+      return(
+        <ScrollView 
+        horizontal
+        pagingEnabled
+        scrollEventThrottle={1}
+        showsHorizontalScrollIndicator={false}
+        snapToInterval={CARD_WIDTH + 20}
+        snapToAlignment="center"
+        style = {styles.scrollView}
+      >
+        <View style={styles.card}>
+          <Button title="Back" onPress={() => {this.setState({rideAlong: false})}}/>
+        </View>
+        <View style={styles.card}>
+        <DateTimePicker
+                testID="dateTimePicker"
+                value={this.state.leaveTime}
+                mode={'time'}
+                is24Hour={true}
+                display="default"
+                onChange={ (event, selectedDate) => {this.setState({leaveTime: selectedDate})}}
+                style={{width: CARD_WIDTH, height: CARD_HEIGHT}}
+              />
+        </View>
+        <View style={styles.card}>
+          <Text>Seats</Text>
+          <Text>This will have a number picker</Text>
+        </View>
+        <View style={styles.card}>
+          <Text>Additional Notes</Text>
+          <TextInput style={{ height: 40, borderColor: 'gray', borderWidth: 1, borderRadius: 5 }} onChangeText={text => this.setState({desc: text})}/>
+        </View>
+        <View style={styles.card}>
+        <Button style={styles.buttonStyle} title="Submit" onPress={
+                () => newRide(
+                  //title, destLng, destLat, startLng, startLat,leaveTime, desc, seats
+                  this.state.marker.title,
+                  this.state.marker.lng,
+                  this.state.marker.lat,
+                  this.state.currentLocation.lng,
+                  this.state.currentLocation.lat,
+                  new Date(1598051730000),
+                  //this.state.leaveTime,
+                  this.state.desc, 
+                  "John Smith",
+                  this.state.seats
+
+                )
+                } />
+        </View>
+      </ScrollView>
+      )
+              } else {
+                return null
+              }
   }
 
   handleRoutePreview = () => {
@@ -271,6 +269,8 @@ class MapViewExample extends React.Component {
                 />
               </View>
               <this.handleRideInformation/>
+              <this.handleDecisionMaking/>
+              <this.handlePickupInformation/>
             </View>
         </View>
     );

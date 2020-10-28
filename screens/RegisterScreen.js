@@ -95,10 +95,10 @@ export default function RegisterScreen({ navigation }) {
           placeholder="Enter password"
           autoCapitalize="none"
           autoCorrect={false}
-          secureTextEntry={passwordVisibility}
           textContentType="password"
           rightIcon={rightIcon}
-          handlePasswordVisibility={handlePasswordVisibility}
+          secureTextEntry={passwordVisibility}
+          onTap={handlePasswordVisibility}
           borderRadius={100}
         />
         <FormField
@@ -107,10 +107,11 @@ export default function RegisterScreen({ navigation }) {
           placeholder="Confirm password"
           autoCapitalize="none"
           autoCorrect={false}
-          secureTextEntry={confirmPasswordVisibility}
+
           textContentType="password"
           rightIcon={confirmPasswordIcon}
-          handlePasswordVisibility={handleConfirmPasswordVisibility}
+          secureTextEntry={confirmPasswordVisibility}
+          onTap={handleConfirmPasswordVisibility}
           borderRadius={100}
         />
         <FormButton title={'Register'} />

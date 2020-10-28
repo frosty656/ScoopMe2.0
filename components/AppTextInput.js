@@ -9,7 +9,7 @@ export default function AppTextInput({
   leftIcon,
   width = '100%',
   rightIcon,
-  handlePasswordVisibility,
+  onTap = null,
   ...otherProps
 }) {
   return (
@@ -33,7 +33,7 @@ export default function AppTextInput({
 
       <View zIndex={1} position={'absolute'} right={20}>
         {rightIcon && (
-          <TouchableOpacity onPress={handlePasswordVisibility}>
+          <TouchableOpacity onPress={onTap}>
             <MaterialCommunityIcons
               name={rightIcon}
               size={20}

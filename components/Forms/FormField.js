@@ -10,7 +10,7 @@ export default function FormField({ name, width,...otherProps }) {
     setFieldValue,
     values,
     errors,
-    touched
+    touched,
   } = useFormikContext();
 
   return (
@@ -27,13 +27,3 @@ export default function FormField({ name, width,...otherProps }) {
     </React.Fragment>
   );
 }
-
-/*
-      <AppTextInput
-        value={values[name]}
-        onChangeText={text => setFieldValue(name, text)}
-        onBlur={() => setFieldTouched(name)}
-        width={width}
-        {...otherProps}
-      />
-      */
