@@ -16,7 +16,7 @@ export default function AppButton({ title, onPress, width, height}) {
         <Text style={styles.buttonText}>{title}</Text>
       </NeuButton>
     </View>
-    
+
   );
 }
 
@@ -31,8 +31,7 @@ const styles = StyleSheet.create({
   buttonText: {
     color: Colors.black,
     fontSize: 18,
-    fontWeight: '600',
-    textTransform: 'uppercase'
+    fontWeight: '500',
   },
   border:{
     alignItems: 'center',
