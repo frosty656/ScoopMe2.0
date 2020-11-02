@@ -10,13 +10,11 @@ class ProfilePicture extends React.Component {
     state={
         profileImageUrl: "",
         imagePath: "/profileImages/" + auth.currentUser.uid
-
-
     }
     constructor(props){
         super(props)
         this.getImageURL();
-        
+
     }
 
     render(){

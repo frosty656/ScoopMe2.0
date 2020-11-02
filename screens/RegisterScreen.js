@@ -68,6 +68,13 @@ export default function RegisterScreen({ navigation }) {
 
   return (
     <SafeView style={styles.container}>
+      <IconButton
+          style={styles.backButton}
+          iconName="keyboard-backspace"
+          color={Colors.blue}
+          size={40}
+          onPress={() => navigation.goBack()}
+      />
       <Form
         initialValues={{
           name: '',
@@ -117,13 +124,7 @@ export default function RegisterScreen({ navigation }) {
         <FormButton title={'Register'} />
         {<FormErrorMessage error={registerError} visible={true} />}
       </Form>
-      <IconButton
-        style={styles.backButton}
-        iconName="keyboard-backspace"
-        color={Colors.black}
-        size={30}
-        onPress={() => navigation.goBack()}
-      />
+
     </SafeView>
   );
 }
@@ -137,6 +138,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginVertical: 10,
+    paddingRight: 280,
+    paddingBottom: 100,
   }
 });
 

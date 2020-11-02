@@ -8,9 +8,9 @@ export default function IconButton({ iconName, color, size, onPress, style }) {
   return (
     <TouchableOpacity style={[style]} onPress={onPress}>
       <NeuButton
-        width={size || 300}
-        height={size || 50}
-        borderRadius={16}
+        width={size || 250}
+        height={size || 30}
+        borderRadius={25}
         onPress={onPress}
         color={Colors.primary}>
         <MaterialCommunityIcons name={iconName} size={size} color={color} />

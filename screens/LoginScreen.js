@@ -36,7 +36,7 @@ export default function LoginScreen({ navigation }) {
     } else if (rightIcon === 'eye-off') {
       setRightIcon('eye');
       setPasswordVisibility(!passwordVisibility);
-      
+
     }
   }
   async function handleOnLogin(values) {
@@ -51,6 +51,14 @@ export default function LoginScreen({ navigation }) {
 
   return (
     <SafeView style={styles.container}>
+      <IconButton
+          style={styles.backButton}
+          iconName="keyboard-backspace"
+          color={Colors.blue}
+          size={40}
+          onPress={() => navigation.goBack()}
+      />
+
       <Form
         initialValues={{ email: '', password: '' }}
         validationSchema={validationSchema}
@@ -79,8 +87,8 @@ export default function LoginScreen({ navigation }) {
           onTap={handlePasswordVisibility}
         />
 
-        
         <FormButton title={'Login'} />
+        
         {<FormErrorMessage error={loginError} visible={true} />}
       </Form>
       <View style={styles.footerButtonContainer}>
@@ -110,14 +118,16 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   forgotPasswordButtonText: {
-    color: Colors.black,
-    fontSize: 18,
-    fontWeight: '600'
+    color: Colors.blue,
+    fontSize: 15,
+    fontWeight: '400'
   },
   backButton: {
-    color: Colors.black,
+    color: Colors.blue,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    paddingRight: 280,
+    paddingBottom: 100,
   },
   inputRow: {
     borderWidth: 4,
