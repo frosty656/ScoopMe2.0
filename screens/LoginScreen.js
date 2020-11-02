@@ -88,7 +88,7 @@ export default function LoginScreen({ navigation }) {
         />
 
         <FormButton title={'Login'} />
-        
+
         {<FormErrorMessage error={loginError} visible={true} />}
       </Form>
       <View style={styles.footerButtonContainer}>
@@ -96,12 +96,6 @@ export default function LoginScreen({ navigation }) {
           <Text style={styles.forgotPasswordButtonText}>Forgot Password?</Text>
         </TouchableOpacity>
       </View>
-      <IconButton
-        style={styles.backButton}
-        iconName="keyboard-backspace"
-        size={30}
-        onPress={() => navigation.goBack()}
-      />
     </SafeView>
   );
 }
