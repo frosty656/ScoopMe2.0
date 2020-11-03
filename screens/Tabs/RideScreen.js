@@ -25,8 +25,9 @@ class RideScreen extends Component{
         .onSnapshot(docs =>{
             let tempTrips = []
             docs.forEach(doc =>{
-                tempTrips.push(doc.data())
-                console.log(doc.data())
+                let tempObj = Object.assign(doc.data(),{"id": doc.id})
+                tempTrips.push(tempObj)
+                console.log(tempObj)
             })
             this.setState({trips: tempTrips})
         })
@@ -49,7 +50,7 @@ class RideScreen extends Component{
     }
 
     render(){
-            console.disableYellowBox = true; // remove all warnings
+           // console.disableYellowBox = true; // remove all warnings
         return(
 
             <SafeAreaView style={{flex: 1, alignItems: 'center'}}>
@@ -59,7 +60,7 @@ class RideScreen extends Component{
                 <FlatList
                     contentContainerStyle={{flexGrow: 1}}
                     data={this.state.trips}
-                    keyExtractor={(item) => item.id}
+                    keyExtractor={item => item.id}
                     renderItem={({ item }) => this.renderRow(item)}
                 />
             </View>

@@ -1,6 +1,6 @@
 import React from 'react';
 import MapView, {Marker, Circle} from 'react-native-maps';
-import { StyleSheet, View, Dimensions, Button, TextInput, Text, Animated, ScrollView  } from 'react-native';
+import { StyleSheet, View, Dimensions, Button, TextInput, Text, Animated, ScrollView, Platform, TouchableOpacity  } from 'react-native';
 import * as Location from 'expo-location';
 import * as Permissions from 'expo-permissions';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
@@ -30,6 +30,7 @@ class MapViewExample extends React.Component {
 
     pickup: false,
     rideAlong: false,
+    informationState: 0
   };
 
 
@@ -93,21 +94,6 @@ class MapViewExample extends React.Component {
     }
   }
 
-  //This should go away
-  handleRideButton = () => {
-    if(this.state.marker){
-      return (
-        <View zIndex={6} style={styles.rideButton}>
-          <View backgroundColor={'white'} borderColor={'black'} borderWidth={3} borderRadius={5}>
-            <Button style={styles.buttonStyle} title="Add Ride" onPress={() => this.handleRideInformation} />
-          </View>
-        </View>
-      )
-    } else {
-      return null
-    }
-  }
-
   handlePickupInformation = () => {
     if(this.state.pickup){
       return (
@@ -138,12 +124,13 @@ class MapViewExample extends React.Component {
   }
 
   handleDecisionMaking = () => {
-    if(this.state.rideAlong == false && this.state.pickup == false){
+    if(this.state.rideAlong == false && this.state.pickup == false && this.state.informationState == 1){
       return(
         <ScrollView style={styles.scrollView}>
         <View style={styles.card}>
           <Button title = "Pickup" onPress={() => {this.setState({pickup: true})}}/>
           <Button title = "Ride Along" onPress={() => {this.setState({rideAlong: true})}}/>
+          <Button title='Cancel' onPress={() => {this.setState({seats: 4, pickup: false, rideAlong: false, informationState: 0, desc: "", marker: null})}}/>
         </View>
         </ScrollView>
       )
@@ -151,7 +138,6 @@ class MapViewExample extends React.Component {
         return null
       }
   }
-
   handleRideInformation = () => {
     //This is for if you are driving people
     if(this.state.rideAlong){
@@ -180,8 +166,24 @@ class MapViewExample extends React.Component {
               />
         </View>
         <View style={styles.card}>
-          <Text>Seats</Text>
-          <Text>This will have a number picker</Text>
+          <Text style={{fontSize: 20, alignSelf: 'center'}}>Seats</Text>
+          <View>
+            <View style={{
+              flexDirection: 'row', 
+              alignItems:'center', 
+              justifyContent: 'center', 
+              }}>
+              <TouchableOpacity onPress={() => this.setState({seats: this.state.seats - 1})} style={{width: '50%', height: CARD_HEIGHT, alignItems:'center', justifyContent: 'center', zIndex:3}}>
+                <Text style={{fontSize: 20}}>-</Text>
+              </TouchableOpacity>
+              <Text style={{zIndex: 1, fontSize: 20}}>{this.state.seats}</Text>
+              <TouchableOpacity onPress={() => this.setState({seats: this.state.seats + 1})} style={{width: '50%', height: CARD_HEIGHT, alignItems:'center', justifyContent: 'center', zIndex:3}}>
+                <Text style={{fontSize: 20}}>+</Text>
+              </TouchableOpacity>
+            </View>
+
+            </View>
+
         </View>
         <View style={styles.card}>
           <Text>Additional Notes</Text>
@@ -189,20 +191,18 @@ class MapViewExample extends React.Component {
         </View>
         <View style={styles.card}>
         <Button style={styles.buttonStyle} title="Submit" onPress={
-                () => newRide(
-                  //title, destLng, destLat, startLng, startLat,leaveTime, desc, seats
+                () => {newRide(
                   this.state.marker.title,
                   this.state.marker.lng,
                   this.state.marker.lat,
                   this.state.currentLocation.lng,
                   this.state.currentLocation.lat,
-                  new Date(1598051730000),
-                  //this.state.leaveTime,
+                  this.state.leaveTime,
                   this.state.desc, 
-                  "John Smith",
                   this.state.seats
-
-                )
+                ) 
+                this.setState({seats: 4, pickup: false, rideAlong: false, informationState: 0, desc: "", marker: null})
+              }
                 } />
         </View>
       </ScrollView>
@@ -225,7 +225,7 @@ class MapViewExample extends React.Component {
       return null
     }
   }
-
+  //TODO: Change the map region when displaying a route preview
   render() {
     return (
         <View style={styles.container}>
@@ -241,7 +241,7 @@ class MapViewExample extends React.Component {
             </MapView>
           </View>
             <View zIndex={2} style={styles.floatingUI}>
-              <View style={{width: Dimensions.get('window').width - 100}}>
+              <View style={{width: '90%'}}>
                 <GooglePlacesAutocomplete
                   placeholder='Search'
                   minLength={2}
@@ -253,19 +253,67 @@ class MapViewExample extends React.Component {
                       lng: details.geometry.location.lng, 
                       title: data.structured_formatting.main_text
                     }})
-                    this.setState({informationState: 2})
-                    console.log(data);
+                    this.setState({informationState: 1})
+                   // console.log(data);
                   }}
-                  onTouchCancel={() => console.log("touch ended")}
+                  disableScroll={true}
+                  
                   getDefaultValue={() => {
                     return ''; // text input default value
                   }}
                   query={{
-                    key: 'AIzaSyAdweI54n6dgNJwQeGqGER9WYIESRkqEqE',
+                    key: 'AIzaSyAdweI54n6dgNJwQeGqGER9WYIESRkqEqE', //TODO: Store this in a file elsewhere
                     language: 'en',
                     rankby: 'distance',
                   }}
                   enablePoweredByContainer={false}
+                  suppressDefaultStyles={true}
+                  styles={{
+                    container: {
+                      flex: 1,
+                    },
+                    textInputContainer: {
+                      position: 'absolute',
+                      marginTop: Platform.os == 'ios' ? 20 : 10,
+                      flexDirection: 'row',
+                      backgroundColor: '#FFF',
+                      alignSelf: 'center',
+                      borderRadius: 5,
+                      padding: 10,
+                      shadowColor: '#ccc',
+                      shadowOffset: {width: 0, height: 3},
+                      shadowOpacity: 0.5,
+                      shadowRadius: 5,
+                      zIndex: 10
+                    },
+                    textInput: {
+                      flex: 1,
+                      padding: 0
+                    },
+                    poweredContainer: {
+                      justifyContent: 'flex-end',
+                      alignItems: 'center',
+                    },
+                    powered: {},
+                    listView: {zIndex: 1, backgroundColor: '#fff', transform: [{translateY: 50}]},
+                    row: {
+                      padding: 13,
+                      height: 44,
+                      flexDirection: 'row',
+                    },
+                    separator: {
+                      height: StyleSheet.hairlineWidth,
+                      backgroundColor: '#c8c7cc',
+                    },
+                    description: {},
+                    loader: {
+                      flexDirection: 'row',
+                      justifyContent: 'flex-end',
+                      height: 20,
+                    },
+                  
+                  }
+                }
                 />
               </View>
               <this.handleRideInformation/>
@@ -346,3 +394,8 @@ const styles = StyleSheet.create({
 });
 
 export default MapViewExample;
+
+
+/*
+                  
+                  */

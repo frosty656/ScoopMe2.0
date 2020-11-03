@@ -4,21 +4,32 @@ import SafeView from '../../components/SafeView';
 import { View, Text, StyleSheet} from 'react-native';
 import { format } from "date-fns";
 import MapView, {Marker} from 'react-native-maps';
+import { NeuView } from 'react-native-neu-element';
+import {joinRide} from '../../components/Firebase/firebase'
 
 
 export default function ChangeName({route, navigation}){
     const { item } = route.params
-    var date = new Date("2016/01/04 10:34:23")
+
+
+
     return(
         <SafeView>
-            <View style={{alignItems: 'center', backgroundColor: "white"}}>
+            <View>
             <Text style={styles.text}>Driver {item.deliverer}</Text>
-                 <Text style={styles.text}>Time: {format(item.leaveTime.seconds * 1000, "hh:mm")}</Text>
+                 <Text style={styles.text}>Leaving: {format(item.leaveTime.seconds * 1000, "hh:mm")}</Text>
                  
                  <Text style={styles.text}>Destination: {item.title}</Text>
                  <Text style={styles.text}>Notes: {item.description}</Text>
                  <Text style={styles.text}>Seats: {item.seats}</Text>
+                 <View style={{flexDirection: 'row'}}>
+                     <Text style={styles.text}>Riders: </Text>
+                    {item.riders.map((prop,key) => {
+                        return (<Text style={styles.text}>{prop.riderName}</Text>)
+                    })}
+                </View>
             </View>
+            
 
             <MapView
             style={styles.mapStyle}
@@ -27,6 +38,10 @@ export default function ChangeName({route, navigation}){
               
               <Marker title={item.title} coordinate={{longitude: item.destLng, latitude: item.destLat}}/>
             </MapView>
+            <View style={styles.buttonContainer}>
+                <AppButton title="Join Ride" onPress={() => {joinRide(item.id)}}/>
+            </View>
+            
         </SafeView>
     );
 }
@@ -34,11 +49,14 @@ export default function ChangeName({route, navigation}){
 const styles = StyleSheet.create({
     text: {
         fontSize: 20,
-        padding: 20
+        padding: 5
     },
     mapStyle: {
         width: 400,
         height: 400,
       },
+      buttonContainer: {
+          padding: 10
+      }
   });
   
