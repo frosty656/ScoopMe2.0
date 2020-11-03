@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Text, View, Button } from 'react-native';
+import {Text, View, Button, StyleSheet} from 'react-native';
 
 import ProfilePicture from './ProfilePictureScreen'
 import SafeView from '../../components/SafeView';
@@ -8,6 +8,7 @@ import IconButton from "../../components/IconButton";
 import useStatusBar from "../../hooks/useStatusBar";
 import MessagesInboxScreen from "../MessagesInboxScreen";
 import AppButton from "../../components/AppButton";
+import Colors from "../../utils/colors";
 
 class SettingsScreen extends React.Component{
     constructor(props) {
@@ -18,9 +19,11 @@ class SettingsScreen extends React.Component{
 
         return (
         <SafeView style={{ flex: 1, justifyContent: 'flex-start', alignItems: 'center' }}>
-            <Text style={{fontSize: 50}}>Profile!</Text>
-            <ProfilePicture/>
-            <Text style={{fontSize: 30}}>{auth.currentUser.displayName}</Text>
+            <View style={styles.container}>
+                <ProfilePicture/>
+                <Text style={styles.text}>{auth.currentUser.displayName}</Text>
+            </View>
+
         </SafeView>
 
         );
@@ -29,3 +32,16 @@ class SettingsScreen extends React.Component{
 
 export default SettingsScreen;
 
+const styles = StyleSheet.create({
+    text: {
+        alignItems: 'center',
+        padding: 10,
+        fontSize: 20,
+        color: Colors.mediumGrey
+    },
+    container: {
+        alignItems: 'center',
+        paddingTop: 30
+    },
+
+});

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Text, View, Button, TextInput, SafeAreaView, FlatList } from 'react-native';
+import {Text, View, Button, TextInput, SafeAreaView, FlatList, StyleSheet} from 'react-native';
 
 import 'firebase/firestore';
 import { firestore } from 'firebase';
@@ -8,6 +8,7 @@ import IconButton from '../../components/IconButton'
 import { useState } from 'react';
 import { render } from 'react-dom';
 import { Component } from 'react';
+import Colors from "../../utils/colors";
 
 class RideScreen extends Component{
 
@@ -68,7 +69,8 @@ class RideScreen extends Component{
                     <IconButton
                         iconName="email"
                         size={45}
-                        style={{paddingLeft: 300, paddingBottom: 20}}
+                        style={styles.messageIconButton}
+                        color={Colors.blue}
                         onPress={() => this.props.navigation.navigate('Messages')}>
                     </IconButton>
                 </View>
@@ -78,3 +80,13 @@ class RideScreen extends Component{
 }
 
 export default RideScreen;
+
+const styles = StyleSheet.create({
+    messageIconButton: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginVertical: 10,
+        paddingLeft: 300,
+        paddingBottom: 20,
+    }
+});
