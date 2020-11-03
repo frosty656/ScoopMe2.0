@@ -9,7 +9,7 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 import MapViewDirections from 'react-native-maps-directions';
 
 
-import {newRide} from '../../components/Firebase/firebase'
+import {newRide, newDelivery} from '../../components/Firebase/firebase'
 
 const { width, height} = Dimensions.get("window");
 const CARD_HEIGHT = 100;
@@ -110,11 +110,32 @@ class MapViewExample extends React.Component {
           <Button title="Back" onPress={() => {this.setState({pickup: false})}}/>
         </View>
         <View style={styles.card}>
+        <DateTimePicker
+                testID="dateTimePicker"
+                value={this.state.leaveTime}
+                mode={'time'}
+                is24Hour={true}
+                display="default"
+                onChange={ (event, selectedDate) => {this.setState({leaveTime: selectedDate})}}
+                style={{width: CARD_WIDTH, height: CARD_HEIGHT}}
+              />
+        </View>
+        <View style={styles.card}>
           <Text>Write a note</Text>
           <TextInput style={{ height: 40, borderColor: 'gray', borderWidth: 1, borderRadius: 5 }} onChangeText={text => this.setState({desc: text})}/>
         </View>
         <View style={styles.card}>
-        <Button title="Submit" onPress={() => {this.setState({pickup: false})}}/>
+        <Button title="Submit" onPress={() => {
+          newDelivery(
+            this.state.marker.title,
+            this.state.marker.lng,
+            this.state.marker.lat,
+            this.state.currentLocation.lng,
+            this.state.currentLocation.lat,
+            this.state.leaveTime,
+            this.state.desc, 
+          )
+          this.setState({pickup: false})}}/>
         </View>
       </ScrollView>
           )
@@ -207,9 +228,9 @@ class MapViewExample extends React.Component {
         </View>
       </ScrollView>
       )
-              } else {
-                return null
-              }
+    } else {
+      return null
+    }
   }
 
   handleRoutePreview = () => {

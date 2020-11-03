@@ -33,6 +33,7 @@ export const changeUseresProfileImage = (imageURI) => {
 
 export const newRide = (title, destLng, destLat, startLng, startLat,leaveTime, desc, seats) => {
 firebase.firestore().collection("Trips").add({
+    "type": "ride",
     "title": title,
     "destLng": destLng, 
     "destLat": destLat, 
@@ -51,3 +52,27 @@ export const joinRide = (rideID) => {
     "riders": firebase.firestore.FieldValue.arrayUnion({"riderName": auth.currentUser.displayName, "riderID": auth.currentUser.uid})
   })
 }
+
+
+export const newDelivery = (title, destLng, destLat, startLng, startLat,leaveTime, desc, seats) => {
+  firebase.firestore().collection("Trips").add({
+      "type": "delivery",
+      "title": title,
+      "destLng": destLng, 
+      "destLat": destLat, 
+      "startLng": startLng, 
+      "startLat": startLat,
+      "leaveTime": leaveTime,
+      "description": desc,
+      "deliverer": auth.currentUser.displayName,
+      "usersAndItems": []
+    })
+  }
+
+export const addToDelivery = (rideID, item, weight) => {
+  firebase.firestore().collection("Trips").doc(rideID).update({
+    "userAndItems": firebase.firestore.FieldValue.arrayUnion({"riderName": auth.currentUser.displayName, "riderID": auth.currentUser.uid, "item": item, "weight": weight})
+  })
+}
+  
+
