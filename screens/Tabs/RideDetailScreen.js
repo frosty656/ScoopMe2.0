@@ -8,11 +8,8 @@ import { NeuView } from 'react-native-neu-element';
 import {joinRide} from '../../components/Firebase/firebase'
 
 
-export default function ChangeName({route, navigation}){
+export default function RideDetailScreen({route, navigation}){
     const { item } = route.params
-
-
-
     return(
         <SafeView>
             <View>

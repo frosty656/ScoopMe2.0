@@ -54,7 +54,7 @@ export const joinRide = (rideID) => {
 }
 
 
-export const newDelivery = (title, destLng, destLat, startLng, startLat,leaveTime, desc, seats) => {
+export const newDelivery = (title, destLng, destLat, startLng, startLat,leaveTime, desc) => {
   firebase.firestore().collection("Trips").add({
       "type": "delivery",
       "title": title,

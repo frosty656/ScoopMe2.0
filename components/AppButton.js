@@ -4,7 +4,7 @@ import { NeuButton } from 'react-native-neu-element';
 
 import Colors from '../utils/colors';
 
-export default function AppButton({ title, onPress, width, height}) {
+export default function AppButton({ title, onPress, width, height, active = false}) {
   return (
     <View style={styles.border}>
     <NeuButton
@@ -12,7 +12,10 @@ export default function AppButton({ title, onPress, width, height}) {
         height={height || 50}
         borderRadius={16}
         onPress={onPress}
-        color={Colors.primary}>
+        color={Colors.primary}
+        active={active}
+        >
+          
         <Text style={styles.buttonText}>{title}</Text>
       </NeuButton>
     </View>
