@@ -53,7 +53,7 @@ export default function PickupDetailsScreen({route, navigation}){
                         backgroundColor: 'white', 
                         position: "absolute", 
                         borderRadius: 10, 
-                        width: '75%', 
+                        width: '90%', 
                         height: '50%', 
                         padding: 10}}>
 

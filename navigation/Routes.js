@@ -13,6 +13,7 @@ export default function Routes() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    console.disableYellowBox = true; // remove all warnings
     // onAuthStateChanged returns an unsubscriber
     const unsubscribeAuth = auth.onAuthStateChanged(async authUser => {
       try {

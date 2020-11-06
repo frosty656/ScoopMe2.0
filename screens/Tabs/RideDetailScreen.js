@@ -36,7 +36,7 @@ export default function RideDetailScreen({route, navigation}){
               <Marker title={item.title} coordinate={{longitude: item.destLng, latitude: item.destLat}}/>
             </MapView>
             <View style={styles.buttonContainer}>
-                <AppButton title="Join Ride" onPress={() => {joinRide(item.id)}}/>
+                <AppButton title="Join Ride" onPress={() => {joinRide(item)}}/>
             </View>
             
         </SafeView>
