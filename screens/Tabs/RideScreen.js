@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Text, View, Button, TextInput, SafeAreaView, FlatList, StyleSheet, TouchableOpacity} from 'react-native';
+import {Text, View, Button, TextInput, SafeAreaView, FlatList, StyleSheet, TouchableOpacity, Image} from 'react-native';
 
 import 'firebase/firestore';
 import { firestore } from 'firebase';
@@ -10,6 +10,7 @@ import { render } from 'react-dom';
 import { Component } from 'react';
 import Colors from "../../utils/colors";
 import { isThisHour } from 'date-fns';
+import Color from "../../utils/colors";
 
 class RideScreen extends Component{
 
@@ -39,7 +40,7 @@ class RideScreen extends Component{
                     tempPickups.push(tempObj)
                     console.log(tempObj)
                 }
-                
+
             })
             this.setState({trips: tempTrips, pickups: tempPickups})
         })
@@ -47,10 +48,10 @@ class RideScreen extends Component{
 
     renderRideRow(item) {
         return (
-            <View style={{flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 20, paddingVertical: 5}}>
+            <View style={{flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 20, paddingVertical: 10}}>
                 <View style={{flexDirection: 'column'}}>
                     <Text style={{fontSize: 20}}>Destination: {item.title}</Text>
-                    <Text style={{fontSize: 15}}>Driver: {item.deliverer}</Text>
+                    <Text style={{fontSize: 15, color: Colors.mediumGrey}}>Driver: {item.deliverer}</Text>
                 </View>
                 <IconButton
                     iconName="arrow-right"
@@ -63,10 +64,10 @@ class RideScreen extends Component{
 
     renderPickupRow(item) {
         return (
-            <View style={{flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 20, paddingVertical: 5}}>
+            <View style={{flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 20, paddingVertical: 10}}>
                 <View style={{flexDirection: 'column'}}>
                     <Text style={{fontSize: 20}}>Destination: {item.title}</Text>
-                    <Text style={{fontSize: 15}}>Driver: {item.deliverer}</Text>
+                    <Text style={{fontSize: 15, color: Colors.mediumGrey}}>Driver: {item.deliverer}</Text>
                 </View>
                 <IconButton
                     iconName="arrow-right"
@@ -80,16 +81,19 @@ class RideScreen extends Component{
     handleTripView = () => {
         return (
             <SafeAreaView style={{flex: 1, alignItems: 'center'}}>
+                <View style={styles.logoContainer}>
+                    <Image source={require('../../assets/flame.png')} style={styles.logo} />
+                </View>
 
-                <View style={{flexDirection: 'row', height: 100, padding: 20}}>
-                    <TouchableOpacity style={{width: '50%', alignItems: 'center', backgroundColor: 'lightblue', borderRadius: 5}}>
-                        <Text style={{fontSize: 50, flex: 1}}>Trips</Text>
+                <View style={{flexDirection: 'row', height: 120, paddingTop: 50, paddingBottom: 10}}>
+                    <TouchableOpacity style={{width: '50%', alignItems: 'center', backgroundColor: Colors.blue,  borderRadius: 5, paddingTop: 10}}>
+                        <Text style={{fontSize: 25, flex: 1, color: Colors.ghostWhite}}>Trips</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={{width: '50%', alignItems: 'center'}} onPress={() => this.setState({currentView: 'pickups'})}>
-                        <Text style={{fontSize: 50, flex: 1}}>Pickups</Text>
+                    <TouchableOpacity style={{width: '50%', alignItems: 'center', backgroundColor: Colors.lightGrey2, paddingTop: 15}} onPress={() => this.setState({currentView: 'pickups'})}>
+                        <Text style={{fontSize: 23, flex: 1}}>Delivery</Text>
                     </TouchableOpacity>
                 </View>
-            
+
             <View style={{flexDirection: 'row', flex: 9}}>
                 <FlatList
                     contentContainerStyle={{flexGrow: 1}}
@@ -114,16 +118,19 @@ class RideScreen extends Component{
     handlePickupView = () => {
         return (
             <SafeAreaView style={{flex: 1, alignItems: 'center'}}>
+                <View style={styles.logoContainer}>
+                    <Image source={require('../../assets/flame.png')} style={styles.logo} />
+                </View>
 
-                <View style={{flexDirection: 'row', height: 100, padding: 20}}>
-                    <TouchableOpacity style={{width: '50%', alignItems: 'center'}} onPress={() => this.setState({currentView: 'trips'})}>
-                        <Text style={{fontSize: 50, flex: 1}}>Trips</Text>
+                <View style={{flexDirection: 'row', height: 120, paddingTop: 50, paddingBottom: 10}}>
+                    <TouchableOpacity style={{width: '50%', alignItems: 'center', paddingTop: 15, backgroundColor: Colors.lightGrey2}} onPress={() => this.setState({currentView: 'trips'})}>
+                        <Text style={{fontSize: 23, flex: 1}}>Trips</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={{width: '50%', alignItems: 'center', backgroundColor: 'lightblue', borderRadius: 5}} >
-                        <Text style={{fontSize: 50, flex: 1}}>Pickups</Text>
+                    <TouchableOpacity style={{width: '50%', alignItems: 'center', paddingTop: 10, backgroundColor: Color.blue, borderRadius: 5}} >
+                        <Text style={{fontSize: 25, flex: 1, color: Colors.ghostWhite}}>Delivery</Text>
                     </TouchableOpacity>
                 </View>
-            
+
             <View style={{flexDirection: 'row', flex: 9}}>
                 <FlatList
                     contentContainerStyle={{flexGrow: 1}}
@@ -168,5 +175,17 @@ const styles = StyleSheet.create({
         marginVertical: 10,
         paddingLeft: 300,
         paddingBottom: 20,
+    },
+    logoContainer: {
+        position: 'absolute',
+        alignItems: 'center',
+        paddingTop: 40,
+        paddingBottom: 20,
+
+    },
+    logo: {
+        width: 45,
+        height: 45,
+        alignItems: 'center',
     }
 });
