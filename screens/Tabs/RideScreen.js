@@ -34,11 +34,11 @@ class RideScreen extends Component{
                 if(doc.data().type == 'ride'){
                     let tempObj = Object.assign(doc.data(),{"id": doc.id})
                     tempTrips.push(tempObj)
-                    console.log(tempObj)
+                    //console.log(tempObj)
                 } else {
                     let tempObj = Object.assign(doc.data(),{"id": doc.id})
                     tempPickups.push(tempObj)
-                    console.log(tempObj)
+                    //console.log(tempObj)
                 }
 
             })

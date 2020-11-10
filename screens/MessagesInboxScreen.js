@@ -22,8 +22,9 @@ export default function MessagesInboxScreen({ navigation }) {
 
   const [threads, setThreads] = useState([]);
   const [loading, setLoading] = useState(true);
-    // get all chat room since we dont have a join ride button yet. Shuold filter out the only rides that user joined
+
   useEffect(() => {
+  //get chat rooms
     const unsubscribe = firestore()
       .collection('Message_threads')
       .orderBy('latestMessage.createdAt', 'desc')
@@ -41,7 +42,14 @@ export default function MessagesInboxScreen({ navigation }) {
           };
         });
 
-        setThreads(threads);
+          //get chat rooms id if user is attending
+          firestore().collection('Users').doc(auth.currentUser.uid)
+            .onSnapshot(docs => {
+                const threadsID = docs.data().chatRooms;
+
+                //filter out chat rooms that user is attending
+                setThreads(threads.filter(item => threadsID.includes(item._id)))
+          })
 
         if (loading) {
           setLoading(false);

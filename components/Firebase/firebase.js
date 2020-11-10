@@ -51,6 +51,24 @@ let documentID = firebase.firestore().collection("Trips").add({
       "destination": title,
       "time": leaveTime,
     })
+    //create chat room
+    firebase.firestore().collection("Message_threads").doc(docRef.id).set({
+    "name": "Ride to " + title,
+    "latestMessage": {
+        "text": "You have joined the room ride to " + title + ".",
+        "createdAt": new Date().getTime()
+        }
+    })
+    // add first system message
+    firebase.firestore().collection("Message_threads").doc(docRef.id).collection('Message').add({
+        "text": "You have joined the room ride to " + title + ".",
+        "createdAt": new Date().getTime(),
+        "system": true
+    })
+    //assign user to that chat room
+    firebase.firestore().collection('Users').doc(auth.currentUser.uid).set({
+        "chatRooms": firebase.firestore.FieldValue.arrayUnion(docRef.id)
+    }, {merge: true})
 })
 
 }
@@ -60,13 +78,17 @@ export const joinRide = (item) => {
   firebase.firestore().collection("Trips").doc(item.id).update({
     "riders": firebase.firestore.FieldValue.arrayUnion({"riderName": auth.currentUser.displayName, "riderID": auth.currentUser.uid})
   })
-  //Put the ride in the useres history
+  //Put the ride in the users history
   firebase.firestore().collection('Users').doc(auth.currentUser.uid).collection('History').add({
     'type': "ride",
     "rideID": item.id,
     "destination": item.title,
     "time": item.leaveTime,
   })
+  //assign user to that chat room
+  firebase.firestore().collection('Users').doc(auth.currentUser.uid).set({
+      "chatRooms": firebase.firestore.FieldValue.arrayUnion(item.id)
+  }, {merge: true})
 }
 
 
@@ -82,20 +104,44 @@ export const newDelivery = (title, destLng, destLat, startLng, startLat,leaveTim
       "description": desc,
       "deliverer": auth.currentUser.displayName,
       "usersAndItems": []
-    })
-      //Put the ride in the useres history
-    firebase.firestore().collection('Users').doc(auth.currentUser.uid).collection('History').add({
-      "type": "pickup",
-      "rideID": item.id,
-      "destination": item.title,
-      "time": item.leaveTime,
-    })
-  }
+    }).then(function(docRef) {
+          //Put the ride in the users history
+          firebase.firestore().collection('Users').doc(auth.currentUser.uid).collection('History').add({
+            'type': "pickup",
+            "rideID": docRef.id,
+            "destination": title,
+            "time": leaveTime,
+          })
+          //create chat room
+          firebase.firestore().collection("Message_threads").doc(docRef.id).set({
+          "name": "Pick up from " + title,
+          "latestMessage": {
+              "text": "You have joined the room ride to " + title + ".",
+              "createdAt": new Date().getTime()
+              }
+          })
+          // add first system message
+          firebase.firestore().collection("Message_threads").doc(docRef.id).collection('Message').add({
+              "text": "You have joined the room Pick up from " + title + ".",
+              "createdAt": new Date().getTime(),
+              "system": true
+          })
+          //assign user to that chat room
+          firebase.firestore().collection('Users').doc(auth.currentUser.uid).set({
+              "chatRooms": firebase.firestore.FieldValue.arrayUnion(docRef.id)
+          }, {merge: true})
+      })
+
+}
 
 export const addToDelivery = (rideID, item, weight) => {
   firebase.firestore().collection("Trips").doc(rideID).update({
     "userAndItems": firebase.firestore.FieldValue.arrayUnion({"riderName": auth.currentUser.displayName, "riderID": auth.currentUser.uid, "item": item, "weight": weight})
   })
+  //assign user to that chat room
+  firebase.firestore().collection('Users').doc(auth.currentUser.uid).set({
+      "chatRooms": firebase.firestore.FieldValue.arrayUnion(rideID)
+  }, {merge: true})
 }
   
 
