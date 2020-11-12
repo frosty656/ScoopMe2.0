@@ -10,7 +10,6 @@ import { render } from 'react-dom';
 import { Component } from 'react';
 import Colors from "../../utils/colors";
 import { isThisHour } from 'date-fns';
-import Color from "../../utils/colors";
 
 class RideScreen extends Component{
 
@@ -24,7 +23,9 @@ class RideScreen extends Component{
         super(props)
         this.handleGetData();
     }
-
+    // This should be moved to the fireabse.js file to keep everything together
+    // This should also have a filter for rides only in the future and in your area
+    // Compound can be hard so maybe area and then sort by newest time and get top 50 then filter manually
     handleGetData() {
         this.subscriber = firestore().collection('Trips')
         .onSnapshot(docs =>{
@@ -34,15 +35,14 @@ class RideScreen extends Component{
                 if(doc.data().type == 'ride'){
                     let tempObj = Object.assign(doc.data(),{"id": doc.id})
                     tempTrips.push(tempObj)
-                    //console.log(tempObj)
                 } else {
                     let tempObj = Object.assign(doc.data(),{"id": doc.id})
                     tempPickups.push(tempObj)
-                    //console.log(tempObj)
                 }
 
             })
             this.setState({trips: tempTrips, pickups: tempPickups})
+
         })
     }
 
@@ -85,12 +85,12 @@ class RideScreen extends Component{
                     <Image source={require('../../assets/flame.png')} style={styles.logo} />
                 </View>
 
-                <View style={{flexDirection: 'row', height: 120, paddingTop: 50, paddingBottom: 10}}>
-                    <TouchableOpacity style={{width: '50%', alignItems: 'center', backgroundColor: Colors.blue,  borderRadius: 5, paddingTop: 10}}>
-                        <Text style={{fontSize: 25, flex: 1, color: Colors.ghostWhite}}>Trips</Text>
+                <View style={styles.tabContainer}>
+                    <TouchableOpacity style={styles.tripsButtonUnfocused}>
+                        <Text style={styles.textUnselected}>Trips</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={{width: '50%', alignItems: 'center', backgroundColor: Colors.lightGrey2, paddingTop: 15}} onPress={() => this.setState({currentView: 'pickups'})}>
-                        <Text style={{fontSize: 23, flex: 1}}>Delivery</Text>
+                    <TouchableOpacity style={styles.deliveryButtonFocused} onPress={() => this.setState({currentView: 'pickups'})}>
+                        <Text style={styles.textSelected}>Delivery</Text>
                     </TouchableOpacity>
                 </View>
 
@@ -122,12 +122,12 @@ class RideScreen extends Component{
                     <Image source={require('../../assets/flame.png')} style={styles.logo} />
                 </View>
 
-                <View style={{flexDirection: 'row', height: 120, paddingTop: 50, paddingBottom: 10}}>
-                    <TouchableOpacity style={{width: '50%', alignItems: 'center', paddingTop: 15, backgroundColor: Colors.lightGrey2}} onPress={() => this.setState({currentView: 'trips'})}>
-                        <Text style={{fontSize: 23, flex: 1}}>Trips</Text>
+                <View style={styles.tabContainer}>
+                    <TouchableOpacity style={styles.tripsButtonFocused} onPress={() => this.setState({currentView: 'trips'})}>
+                        <Text style={styles.textSelected}>Trips</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={{width: '50%', alignItems: 'center', paddingTop: 10, backgroundColor: Color.blue, borderRadius: 5}} >
-                        <Text style={{fontSize: 25, flex: 1, color: Colors.ghostWhite}}>Delivery</Text>
+                    <TouchableOpacity style={styles.deliveryButtonUnfocused} >
+                        <Text style={styles.textUnselected}>Delivery</Text>
                     </TouchableOpacity>
                 </View>
 
@@ -169,6 +169,28 @@ class RideScreen extends Component{
 export default RideScreen;
 
 const styles = StyleSheet.create({
+    deliveryButtonFocused: {
+        width: '50%', 
+        alignItems: 'center', 
+        backgroundColor: Colors.lightGrey2, 
+        borderRadius: 5,
+        padding: 5,
+    },
+    deliveryButtonUnfocused: {
+        width: '50%', 
+        alignItems: 'center', 
+        backgroundColor: Colors.blue, 
+        borderRadius: 5,
+        padding: 5,
+    },
+    logo: {
+        width: 45,
+        height: 45,
+        alignItems: 'center',
+    },
+    logoContainer: {
+        alignItems: 'center',
+    },
     messageIconButton: {
         justifyContent: 'center',
         alignItems: 'center',
@@ -176,16 +198,30 @@ const styles = StyleSheet.create({
         paddingLeft: 300,
         paddingBottom: 20,
     },
-    logoContainer: {
-        position: 'absolute',
-        alignItems: 'center',
-        paddingTop: 40,
-        paddingBottom: 20,
-
+    tabContainer: {
+        flexDirection: 'row', 
+        paddingBottom: 10,
     },
-    logo: {
-        width: 45,
-        height: 45,
-        alignItems: 'center',
-    }
+    textSelected: {
+        fontSize: 23, 
+    },
+    textUnselected: {
+        fontSize: 23, 
+        color: Colors.ghostWhite,
+    },
+    tripsButtonFocused:{
+        width: '50%', 
+        alignItems: 'center', 
+        backgroundColor: Colors.lightGrey2,
+        borderRadius: 5,
+        padding: 5,
+    },
+    tripsButtonUnfocused: {
+        width: '50%', 
+        alignItems: 'center', 
+        backgroundColor: Colors.blue,  
+        borderRadius: 5, 
+        padding: 5,
+    },
+
 });

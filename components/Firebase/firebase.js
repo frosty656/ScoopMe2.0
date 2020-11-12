@@ -145,3 +145,6 @@ export const addToDelivery = (rideID, item, weight) => {
 }
   
 
+export const getUserHistory = () => {
+
+}

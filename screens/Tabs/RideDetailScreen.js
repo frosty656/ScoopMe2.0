@@ -6,14 +6,17 @@ import { format } from "date-fns";
 import MapView, {Marker} from 'react-native-maps';
 import { NeuView } from 'react-native-neu-element';
 import {joinRide} from '../../components/Firebase/firebase'
+import { Dimensions } from 'react-native';
 
+const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
 
 export default function RideDetailScreen({route, navigation}){
     const { item } = route.params
     return(
         <SafeView>
-            <View>
-            <Text style={styles.text}>Driver {item.deliverer}</Text>
+            <View style={styles.textContainer}>
+                 <Text style={styles.text}>Driver: {item.deliverer}</Text>
                  <Text style={styles.text}>Leaving: {format(item.leaveTime.seconds * 1000, "hh:mm")}</Text>
                  
                  <Text style={styles.text}>Destination: {item.title}</Text>
@@ -27,14 +30,15 @@ export default function RideDetailScreen({route, navigation}){
                 </View>
             </View>
             
-
-            <MapView
-            style={styles.mapStyle}
-            region={{latitude: item.destLat, longitude: item.destLng, latitudeDelta: 0.0922, longitudeDelta: 0.0421}}
-            >
-              
-              <Marker title={item.title} coordinate={{longitude: item.destLng, latitude: item.destLat}}/>
-            </MapView>
+            <View style={styles.mapContainer}>
+                <MapView
+                style={styles.mapStyle}
+                region={{latitude: item.destLat, longitude: item.destLng, latitudeDelta: 0.0922, longitudeDelta: 0.0421}}
+                >
+                
+                <Marker title={item.title} coordinate={{longitude: item.destLng, latitude: item.destLat}}/>
+                </MapView>
+            </View>
             <View style={styles.buttonContainer}>
                 <AppButton title="Join Ride" onPress={() => {joinRide(item)}}/>
             </View>
@@ -48,12 +52,21 @@ const styles = StyleSheet.create({
         fontSize: 20,
         padding: 5
     },
+    textContainer: {
+        flex: 3
+    },
     mapStyle: {
-        width: 400,
-        height: 400,
+        width: windowWidth - 20,
+        height: windowHeight / 4,
+        padding: 10
       },
+    mapContainer: {
+        flex:4, 
+        padding: 10
+    },
       buttonContainer: {
-          padding: 10
+          padding: 10,
+          flex: 1
       }
   });
   
