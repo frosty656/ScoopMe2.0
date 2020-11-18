@@ -20,12 +20,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="20c131bc-4648-4651-a57f-925283a80399" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Firebase/firebase.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Firebase/firebase.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/screens/MessagesInboxScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/screens/MessagesInboxScreen.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/screens/Tabs/RideScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/screens/Tabs/RideScreen.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/screens/Tabs/PickupDetailsScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/screens/Tabs/PickupDetailsScreen.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/screens/Tabs/RideDetailScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/screens/Tabs/RideDetailScreen.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -95,13 +92,12 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="COLUMN_ORDER" />
-            </State>
+            <State />
           </value>
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
     <state x="725" y="231" key="RollbackChangesDialog" timestamp="1604972527107">

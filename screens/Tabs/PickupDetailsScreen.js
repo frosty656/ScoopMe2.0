@@ -5,7 +5,7 @@ import { View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import { format } from "date-fns";
 import MapView, {Marker} from 'react-native-maps';
 import { NeuButton } from 'react-native-neu-element'
-
+import Colors from "../../utils/colors";
 import Form from '../../components/Forms/Form';
 import FormField from '../../components/Forms/FormField';
 import FormButton from '../../components/Forms/FormButton';
@@ -39,25 +39,23 @@ export default function PickupDetailsScreen({route, navigation}){
                     //One view to cover background
                     //One view to get user information
                 <View zIndex={1} style={{position: 'absolute', justifyContent: 'flex-start', alignItems: 'center', width: '100%', height: '120%'}}>
-                    <TouchableOpacity 
-                    zIndex={3} 
+                    <TouchableOpacity
+                    zIndex={3}
                     style={{
-                        position: 'absolute', 
-                        height: '100%', 
-                        width: '100%', 
-                        backgroundColor:'grey', 
+                        position: 'absolute',
+                        height: '100%',
+                        width: '100%',
+                        backgroundColor:'grey',
                         opacity: .5}}
                         onPress={() => {setGetInfo(!getInfo)}}
                         />
                     <View zIndex={4} style={{
-                        backgroundColor: 'white', 
-                        position: "absolute", 
-                        borderRadius: 10, 
-                        width: '90%', 
-                        height: '50%', 
+                        backgroundColor: 'white',
+                        position: "absolute",
+                        borderRadius: 10,
+                        width: '90%',
+                        height: '50%',
                         padding: 10}}>
-
-
 
                         <Text style={{fontSize: 20}}>Item Size</Text>
                         <View style={{flexDirection: 'row', paddingHorizontal: 10}}>
@@ -136,19 +134,35 @@ export default function PickupDetailsScreen({route, navigation}){
             <View>
                 <HandleItemInfo/>
                 <View zIndex={0}>
-                    <View>
-                        <Text style={styles.text}>Driver {item.deliverer}</Text>
-                        <Text style={styles.text}>Leaving: {format(item.leaveTime.seconds * 1000, "hh:mm")}</Text>
-                        <Text style={styles.text}>Destination: {item.title}</Text>
-                        <Text style={styles.text}>Notes: {item.description}</Text>
+                    <View style={styles.column}>
+                        <Text style={styles.text4}>Driver</Text>
+                        <Text style={styles.text3}>{item.deliverer}</Text>
                     </View>
-                    
+                    <View style={styles.row}>
+                        <Text style={styles.text}>Leaving:</Text>
+                        <View style={styles.textContainer3}>
+                            <Text style={styles.text2}> {format(item.leaveTime.seconds * 1000, "hh:mm")}</Text>
+                        </View>
+                    </View>
+                    <View style={styles.row}>
+                        <Text style={styles.text}>Destination:</Text>
+                        <View style={styles.textContainer3}>
+                            <Text style={styles.text2}> {item.title}</Text>
+                        </View>
+                    </View>
+                    <View style={styles.row}>
+                        <Text style={styles.text}>Notes:</Text>
+                        <View style={styles.textContainer3}>
+                            <Text style={styles.text2}> {item.description}</Text>
+                        </View>
+                    </View>
+
 
                     <MapView
                     style={styles.mapStyle}
                     region={{latitude: item.destLat, longitude: item.destLng, latitudeDelta: 0.0922, longitudeDelta: 0.0421}}
                     >
-                    
+
                     <Marker title={item.title} coordinate={{longitude: item.destLng, latitude: item.destLat}}/>
                     </MapView>
                     <View style={styles.buttonContainer}>
@@ -163,14 +177,55 @@ export default function PickupDetailsScreen({route, navigation}){
 const styles = StyleSheet.create({
     text: {
         fontSize: 20,
-        padding: 5
+        paddingTop: 5,
+        padding: 5,
+        paddingLeft: 18,
+        fontWeight: '500',
+    },
+    row: {
+        flexDirection: "row",
+        flex: 1,
+    },
+    column: {
+        flexDirection: "column",
+        flex: 2,
+        alignItems: 'center',
+    },
+    text2: {
+        fontSize: 20,
+        fontWeight: '300',
+        paddingLeft: 18,
+        padding: 5,
+        color: Colors.blue,
+        flex: 1,
+        alignItems: 'flex-start'
+    },
+    text3: {
+        fontSize: 20,
+        fontWeight: '300',
+        color: Colors.blue,
+        padding: 5,
+        flex: 2,
+    },
+    text4: {
+        fontSize: 20,
+        fontWeight: '500',
+        flex: 2,
+        paddingTop: 15,
+    },
+    textContainer: {
+        alignItems: 'center',
+    },
+    textContainer3: {
+        alignItems: 'flex-end',
+        flex: 1,
+        paddingRight: 15,
     },
     mapStyle: {
         width: 400,
-        height: 400,
-      },
+        padding: 10,
+    },
       buttonContainer: {
           padding: 10
       }
   });
-  
