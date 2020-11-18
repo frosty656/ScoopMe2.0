@@ -7,6 +7,7 @@ import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplet
 import { isThisHour } from 'date-fns';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import MapViewDirections from 'react-native-maps-directions';
+import Colors from "../../utils/colors";
 
 
 import {newRide, newDelivery} from '../../components/Firebase/firebase'
@@ -80,13 +81,14 @@ class MapViewExample extends React.Component {
     }
   }
 
+  //Use colors here
   handleCircle = () => {
     if(this.state.currentLocation){
       return(
         <Circle 
           center={{latitude: this.state.currentLocation.lat, longitude: this.state.currentLocation.lng}} 
-          radius={this.state.range} fillColor={'rgba(52, 216, 235, 0.4)'} 
-          strokeColor={'rgba(52, 216, 235, 0.6)'}
+          radius={this.state.range} fillColor={Colors.lightBlue} 
+          strokeColor={Colors.lightBlue}
         />
       )
     } else {
@@ -122,7 +124,7 @@ class MapViewExample extends React.Component {
         </View>
         <View style={styles.card}>
           <Text>Write a note</Text>
-          <TextInput style={{ height: 40, borderColor: 'gray', borderWidth: 1, borderRadius: 5 }} onChangeText={text => this.setState({desc: text})}/>
+          <TextInput style={{ height: 40, borderColor: Colors.lightGrey, borderWidth: 1, borderRadius: 5 }} onChangeText={text => this.setState({desc: text})}/>
         </View>
         <View style={styles.card}>
         <Button title="Submit" onPress={() => {
@@ -208,7 +210,7 @@ class MapViewExample extends React.Component {
         </View>
         <View style={styles.card}>
           <Text>Additional Notes</Text>
-          <TextInput style={{ height: 40, borderColor: 'gray', borderWidth: 1, borderRadius: 5 }} onChangeText={text => this.setState({desc: text})}/>
+          <TextInput style={{ height: 40, borderColor: Colors.lightGrey, borderWidth: 1, borderRadius: 5 }} onChangeText={text => this.setState({desc: text})}/>
         </View>
         <View style={styles.card}>
         <Button style={styles.buttonStyle} title="Submit" onPress={
@@ -240,7 +242,7 @@ class MapViewExample extends React.Component {
         destination={{ latitude: this.state.marker.lat, longitude: this.state.marker.lng}}
         apikey={"AIzaSyAdweI54n6dgNJwQeGqGER9WYIESRkqEqE"}
         strokeWidth={3}
-        strokeColor="blue"
+        strokeColor={Colors.blue}
       />)
     } else {
       return null
@@ -297,11 +299,11 @@ class MapViewExample extends React.Component {
                       position: 'absolute',
                       marginTop: Platform.os == 'ios' ? 20 : 10,
                       flexDirection: 'row',
-                      backgroundColor: '#FFF',
+                      backgroundColor: Colors.white,
                       alignSelf: 'center',
                       borderRadius: 5,
                       padding: 10,
-                      shadowColor: '#ccc',
+                      shadowColor: Colors.mediumGrey,
                       shadowOffset: {width: 0, height: 3},
                       shadowOpacity: 0.5,
                       shadowRadius: 5,
@@ -316,7 +318,7 @@ class MapViewExample extends React.Component {
                       alignItems: 'center',
                     },
                     powered: {},
-                    listView: {zIndex: 1, backgroundColor: '#fff', transform: [{translateY: 50}]},
+                    listView: {zIndex: 1, backgroundColor: Colors.white, transform: [{translateY: 50}]},
                     row: {
                       padding: 13,
                       height: 44,
@@ -324,7 +326,7 @@ class MapViewExample extends React.Component {
                     },
                     separator: {
                       height: StyleSheet.hairlineWidth,
-                      backgroundColor: '#c8c7cc',
+                      backgroundColor: Colors.lightGrey,
                     },
                     description: {},
                     loader: {
@@ -349,7 +351,7 @@ class MapViewExample extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: Colors.white,
   },
   buttonStyle: {
     marginRight:40,
@@ -357,10 +359,9 @@ const styles = StyleSheet.create({
     marginTop:10,
     paddingTop:10,
     paddingBottom:10,
-    backgroundColor:'#1E6738',
     borderRadius:10,
     borderWidth: 1,
-    borderColor: '#fff'
+    borderColor: Colors.white
   },
   mapStyle: {
     width: Dimensions.get('window').width,
@@ -401,10 +402,10 @@ const styles = StyleSheet.create({
   },
   card: {
     elevation: 2,
-    backgroundColor: '#FFF',
+    backgroundColor: Colors.white,
     borderRadius: 5,
     marginHorizontal: 10,
-    shadowColor: '#000',
+    shadowColor: Colors.black,
     shadowRadius: 5,
     shadowOpacity: 0.3,
     shadowOffset: {x: 2, y: 3},

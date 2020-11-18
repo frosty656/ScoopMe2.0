@@ -1,6 +1,7 @@
 import React from 'react';
 import { AuthUserProvider } from './AuthUserProvider';
 import Routes from './Routes';
+import { AppearanceProvider } from 'react-native-appearance';
 
 /**
  * Wrap all providers here
@@ -9,7 +10,9 @@ import Routes from './Routes';
 export default function Providers() {
   return (
     <AuthUserProvider>
-      <Routes />
+      <AppearanceProvider>
+        <Routes />
+      </AppearanceProvider>
     </AuthUserProvider>
   );
 }

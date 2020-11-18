@@ -10,19 +10,24 @@ import { render } from 'react-dom';
 import { Component } from 'react';
 import Colors from "../../utils/colors";
 import { isThisHour } from 'date-fns';
+import { useColorScheme } from 'react-native-appearance';
+
 
 class RideScreen extends Component{
+    
 
     state = {
         trips: [],
         pickups: [],
-        currentView: 'trips'
+        currentView: 'trips',
     }
 
     constructor(props){
         super(props)
         this.handleGetData();
     }
+
+    
     // This should be moved to the fireabse.js file to keep everything together
     // This should also have a filter for rides only in the future and in your area
     // Compound can be hard so maybe area and then sort by newest time and get top 50 then filter manually

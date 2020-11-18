@@ -92,12 +92,12 @@ export default function ChatRoomScreen({ route, navigation }) {
         {...props}
         wrapperStyle={{
           right: {
-            backgroundColor: '#6646ee'
+            backgroundColor: Colors.sentMessages
           }
         }}
         textStyle={{
           right: {
-            color: '#fff'
+            color: Colors.white
           }
         }}
       />
@@ -107,7 +107,7 @@ export default function ChatRoomScreen({ route, navigation }) {
   function renderLoading() {
     return (
       <View style={styles.loadingContainer}>
-        <ActivityIndicator size='large' color='#6646ee' />
+        <ActivityIndicator size='large' color={Colors.sentMessages} />
       </View>
     );
   }
@@ -115,7 +115,7 @@ export default function ChatRoomScreen({ route, navigation }) {
   function scrollToBottomComponent() {
     return (
       <View style={styles.bottomComponentContainer}>
-        <IconButton icon='chevron-double-down' size={36} color='#6646ee' />
+        <IconButton icon='chevron-double-down' size={36} color={Colors.sentMessages} />
       </View>
     );
   }

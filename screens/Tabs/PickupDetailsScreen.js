@@ -45,12 +45,12 @@ export default function PickupDetailsScreen({route, navigation}){
                         position: 'absolute',
                         height: '100%',
                         width: '100%',
-                        backgroundColor:'grey',
+                        backgroundColor:Colors.mediumGrey,
                         opacity: .5}}
                         onPress={() => {setGetInfo(!getInfo)}}
                         />
                     <View zIndex={4} style={{
-                        backgroundColor: 'white',
+                        backgroundColor: Colors.white,
                         position: "absolute",
                         borderRadius: 10,
                         width: '90%',
@@ -131,7 +131,7 @@ export default function PickupDetailsScreen({route, navigation}){
 
     return(
         <SafeView>
-            <View>
+            <View >
                 <HandleItemInfo/>
                 <View zIndex={0}>
                     <View style={styles.column}>
@@ -157,14 +157,15 @@ export default function PickupDetailsScreen({route, navigation}){
                         </View>
                     </View>
 
-
-                    <MapView
-                    style={styles.mapStyle}
-                    region={{latitude: item.destLat, longitude: item.destLng, latitudeDelta: 0.0922, longitudeDelta: 0.0421}}
-                    >
-
-                    <Marker title={item.title} coordinate={{longitude: item.destLng, latitude: item.destLat}}/>
-                    </MapView>
+                    <View style={{borderColor: 'red', borderRadius: 5, padding: 30}}>
+                        <MapView
+                        style={styles.mapStyle}
+                        region={{latitude: item.destLat, longitude: item.destLng, latitudeDelta: 0.0922, longitudeDelta: 0.0421}}
+                        >
+                    
+                            <Marker title={item.title} coordinate={{longitude: item.destLng, latitude: item.destLat}}/>
+                        </MapView>
+                    </View>
                     <View style={styles.buttonContainer}>
                         <AppButton title="Request Item" onPress={() => {setGetInfo(!getInfo)}}/>
                     </View>

@@ -9,4 +9,6 @@ export default {
   mediumGrey: '#6e6869',
   red: '#fc5c65',
   blue: '#028BE6',
+  lightBlue: '#34D8EB50',
+  sentMessages: '#6646ee'
 };
