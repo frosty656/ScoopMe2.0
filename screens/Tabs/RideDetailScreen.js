@@ -26,6 +26,12 @@ export default function RideDetailScreen({route, navigation}){
                     <Text style={styles.text2}> {format(item.leaveTime.seconds * 1000, "hh:mm")}</Text>
                 </View>
             </View>
+                <View style={styles.row}>
+                    <Text style={styles.text}>Leaving:</Text>
+                    <View style={styles.textContainer3}>
+                        <Text style={styles.text2}> {format(item.leaveTime.seconds * 1000, "hh:mm")}</Text>
+                    </View>
+                </View>
             <View style={styles.row}>
                 <Text style={styles.text}>Destination:</Text>
                 <View style={styles.textContainer3}>
@@ -60,12 +66,26 @@ export default function RideDetailScreen({route, navigation}){
                     region={{latitude: item.destLat, longitude: item.destLng, latitudeDelta: 0.0922, longitudeDelta: 0.0421}}
                 >
                     <Marker title={item.title} coordinate={{longitude: item.destLng, latitude: item.destLat}}/>
+            </View>
+            <View style={styles.row}>
+                <Text style={styles.text}>Riders: </Text>
+                <View style={styles.textContainer3}>
+                    {item.riders.map((prop,key) => {
+                        return (<Text style={styles.text2}>{prop.riderName}</Text>)
+                    })}
+                </View>
+            </View>
+            <View style={styles.mapContainer}>
+                <MapView
+                style={styles.mapStyle}
+                region={{latitude: item.destLat, longitude: item.destLng, latitudeDelta: 0.0922, longitudeDelta: 0.0421}}
+                >
+                  <Marker title={item.title} coordinate={{longitude: item.destLng, latitude: item.destLat}}/>
                 </MapView>
             </View>
             <View style={styles.buttonContainer}>
                 <AppButton title="Join Ride" onPress={() => {joinRide(item)}}/>
             </View>
-
         </SafeView>
     );
 }
@@ -117,6 +137,7 @@ const styles = StyleSheet.create({
         color: Colors.blue,
         flex: 1,
         alignItems: 'center',
+        paddingTop: 15,
     },
     textContainer: {
         alignItems: 'center',
@@ -142,3 +163,4 @@ const styles = StyleSheet.create({
         paddingBottom: 10
     },
 });
+

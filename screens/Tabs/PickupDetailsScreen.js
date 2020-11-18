@@ -16,7 +16,6 @@ const validationSchema = Yup.object().shape({
       .required('Please enter an item')
       .label('itemDesc')
   });
-
 export default function PickupDetailsScreen({route, navigation}){
     const { item } = route.params
 
@@ -156,7 +155,6 @@ export default function PickupDetailsScreen({route, navigation}){
                             <Text style={styles.text2}> {item.description}</Text>
                         </View>
                     </View>
-
 
                     <MapView
                     style={styles.mapStyle}
