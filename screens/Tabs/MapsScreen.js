@@ -240,7 +240,7 @@ class MapViewExample extends React.Component {
       return(<MapViewDirections
         origin={{latitude: this.state.currentLocation.lat, longitude: this.state.currentLocation.lng}}
         destination={{ latitude: this.state.marker.lat, longitude: this.state.marker.lng}}
-        apikey={"AIzaSyAdweI54n6dgNJwQeGqGER9WYIESRkqEqE"}
+        apikey={"AIzaSyDIbSUnCYOSGYDh9mY7ch0iY0wulAuaQJ8"}
         strokeWidth={3}
         strokeColor={Colors.blue}
       />)
@@ -270,6 +270,7 @@ class MapViewExample extends React.Component {
                   minLength={2}
                   autoFocus={false}
                   fetchDetails={true}
+                  onFail={(data) => console.log(data)}
                   onPress={(data, details = null) => {
                     this.setState({marker: {
                       lat: details.geometry.location.lat, 
@@ -285,7 +286,7 @@ class MapViewExample extends React.Component {
                     return ''; // text input default value
                   }}
                   query={{
-                    key: 'AIzaSyAdweI54n6dgNJwQeGqGER9WYIESRkqEqE', //TODO: Store this in a file elsewhere
+                    key: 'AIzaSyDIbSUnCYOSGYDh9mY7ch0iY0wulAuaQJ8', //TODO: Store this in a file elsewhere
                     language: 'en',
                     rankby: 'distance',
                   }}
@@ -318,7 +319,7 @@ class MapViewExample extends React.Component {
                       alignItems: 'center',
                     },
                     powered: {},
-                    listView: {zIndex: 1, backgroundColor: Colors.white, transform: [{translateY: 50}]},
+                    listView: {zIndex: 1, backgroundColor: Colors.white, transform: [{translateY: 50}], borderRadius: 10},
                     row: {
                       padding: 13,
                       height: 44,
@@ -328,7 +329,7 @@ class MapViewExample extends React.Component {
                       height: StyleSheet.hairlineWidth,
                       backgroundColor: Colors.lightGrey,
                     },
-                    description: {},
+                    description: {color: Colors.black},
                     loader: {
                       flexDirection: 'row',
                       justifyContent: 'flex-end',
@@ -416,8 +417,3 @@ const styles = StyleSheet.create({
 });
 
 export default MapViewExample;
-
-
-/*
-                  
-                  */

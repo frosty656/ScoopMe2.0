@@ -11,6 +11,7 @@ import { Component } from 'react';
 import Colors from "../../utils/colors";
 import { isThisHour } from 'date-fns';
 import { useColorScheme } from 'react-native-appearance';
+import colors from '../../utils/colors';
 
 
 class RideScreen extends Component{
@@ -44,7 +45,6 @@ class RideScreen extends Component{
                     let tempObj = Object.assign(doc.data(),{"id": doc.id})
                     tempPickups.push(tempObj)
                 }
-
             })
             this.setState({trips: tempTrips, pickups: tempPickups})
 
@@ -55,12 +55,13 @@ class RideScreen extends Component{
         return (
             <View style={{flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 20, paddingVertical: 10}}>
                 <View style={{flexDirection: 'column'}}>
-                    <Text style={{fontSize: 20}}>Destination: {item.title}</Text>
+                    <Text style={{fontSize: 20, color: Colors.mediumGrey}}>Destination: {item.title}</Text>
                     <Text style={{fontSize: 15, color: Colors.mediumGrey}}>Driver: {item.deliverer}</Text>
                 </View>
                 <IconButton
                     iconName="arrow-right"
                     size={30}
+                    color={colors.black}
                     onPress={() => this.props.navigation.navigate('RideDetailScreen', {item})}
                 />
             </View>
@@ -71,12 +72,13 @@ class RideScreen extends Component{
         return (
             <View style={{flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 20, paddingVertical: 10}}>
                 <View style={{flexDirection: 'column'}}>
-                    <Text style={{fontSize: 20}}>Destination: {item.title}</Text>
+                    <Text style={{fontSize: 20, color: Colors.mediumGrey}}>Destination: {item.title}</Text>
                     <Text style={{fontSize: 15, color: Colors.mediumGrey}}>Driver: {item.deliverer}</Text>
                 </View>
                 <IconButton
                     iconName="arrow-right"
                     size={30}
+                    color={colors.black}
                     onPress={() => this.props.navigation.navigate('PickupDetailScreen', {item})}
                 />
             </View>
@@ -85,7 +87,7 @@ class RideScreen extends Component{
 
     handleTripView = () => {
         return (
-            <SafeAreaView style={{flex: 1, alignItems: 'center'}}>
+            <SafeAreaView style={{flex: 1, alignItems: 'center', backgroundColor: Colors.primary}}>
                 <View style={styles.logoContainer}>
                     <Image source={require('../../assets/flame.png')} style={styles.logo} />
                 </View>
@@ -122,7 +124,7 @@ class RideScreen extends Component{
 
     handlePickupView = () => {
         return (
-            <SafeAreaView style={{flex: 1, alignItems: 'center'}}>
+            <SafeAreaView style={{flex: 1, alignItems: 'center', backgroundColor: Colors.primary}}>
                 <View style={styles.logoContainer}>
                     <Image source={require('../../assets/flame.png')} style={styles.logo} />
                 </View>

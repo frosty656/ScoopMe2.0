@@ -7,11 +7,12 @@ import { NeuInput } from 'react-native-neu-element';
 
 export default function AppTextInput({
   leftIcon,
-  width = '100%',
+  width = 300,
   rightIcon,
   onTap = null,
   ...otherProps
 }) {
+
   return (
     <View style={styles.container}>
       {leftIcon && (
@@ -26,9 +27,10 @@ export default function AppTextInput({
           <NeuInput
             {...otherProps}
             color={Colors.primary}
-            width={300}
-            height={50}
+            width={width}
+            height={40}
             style={styles.input}
+            textStyle={styles.textStyle}
           />
 
       <View zIndex={1} position={'absolute'} right={20}>
@@ -53,7 +55,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    padding: 15,
     marginVertical: 10,
     borderRadius: 100,
   },
@@ -63,7 +64,7 @@ const styles = StyleSheet.create({
   input: {
     width: '100%',
     fontSize: 18,
-    color: Colors.black
+    color: Colors.black,
   },
   rightIconStyles: {
     position: 'relative',
@@ -73,6 +74,9 @@ const styles = StyleSheet.create({
   evenOutEye: {
     justifyContent: 'center',
     alignItems: 'flex-end'
+  },
+  textStyle: {
+    color: Colors.black
   }
 });
 /*

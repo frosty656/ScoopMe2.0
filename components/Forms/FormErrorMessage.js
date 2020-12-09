@@ -5,7 +5,7 @@ import Colors from '../../utils/colors';
 
 export default function FormErrorMessage({ error, visible }) {
   if (!error || !visible) {
-    return null;
+    return <Text style={{height: 24}}/>;
   }
 
   return <Text style={styles.errorText}>{error}</Text>;

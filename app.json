@@ -19,7 +19,8 @@
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "edu.snhu.scoopme"
-    }
+    },
+    "userInterfaceStyle": "automatic"
   }
 }
 

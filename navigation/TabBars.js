@@ -9,31 +9,37 @@ import profileScreen from '../screens/Tabs/ProfileScreen'
 import homeListScreen from '../screens/Tabs/HomeListView'
 
 
+import Colors from '../utils/colors'
+
+
 const Tab = createBottomTabNavigator();
 
 
 export default function TabBar({ navigation }) {
 
   return (
-      <Tab.Navigator>
+      <Tab.Navigator 
+        tabBarOptions={
+          {style:{backgroundColor: Colors.primary}}
+        }>
         <Tab.Screen name="Home" component={homeListScreen} options={{
           tabBarIcon: ({ tintColor }) => (
-            <Feather name="home" color={tintColor} size={25} />
+            <Feather name="home" color={Colors.black} size={25} />
         ),
         }}/>
         <Tab.Screen name="Map" component={mapView} options={{
           tabBarIcon: ({ tintColor }) => (
-            <Feather name="map-pin" color={tintColor} size={25} />
+            <Feather name="map-pin" color={Colors.black} size={25} />
         ),
         }}/>
         <Tab.Screen name="Profile" component={profileScreen} options={{
           tabBarIcon: ({ tintColor }) => (
-            <Feather name="user" color={tintColor} size={25} />
+            <Feather name="user" color={Colors.black} size={25} />
         ),
         }}/>
         <Tab.Screen name="Settings" component={settingsStack} options={{
           tabBarIcon: ({ tintColor }) => (
-            <Feather name="settings" color={tintColor} size={25} />
+            <Feather name="settings" color={Colors.black} size={25} />
         ),
         }}/>
       </Tab.Navigator>

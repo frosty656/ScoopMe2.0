@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import AppButton from '../../components/AppButton'
 import SafeView from '../../components/SafeView';
-import { View, Text, StyleSheet, TouchableOpacity} from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Dimensions} from 'react-native';
 import { format } from "date-fns";
 import MapView, {Marker} from 'react-native-maps';
 import { NeuButton } from 'react-native-neu-element'
@@ -10,6 +10,8 @@ import Form from '../../components/Forms/Form';
 import FormField from '../../components/Forms/FormField';
 import FormButton from '../../components/Forms/FormButton';
 import * as Yup from 'yup';
+
+const { width, height} = Dimensions.get("window");
 
 const validationSchema = Yup.object().shape({
     itemDesc: Yup.string()
@@ -131,9 +133,9 @@ export default function PickupDetailsScreen({route, navigation}){
 
     return(
         <SafeView>
-            <View >
+            <View>
                 <HandleItemInfo/>
-                <View zIndex={0}>
+                <View zIndex={0} style={styles.masterView}>
                     <View style={styles.column}>
                         <Text style={styles.text4}>Driver</Text>
                         <Text style={styles.text3}>{item.deliverer}</Text>
@@ -156,19 +158,18 @@ export default function PickupDetailsScreen({route, navigation}){
                             <Text style={styles.text2}> {item.description}</Text>
                         </View>
                     </View>
-
-                    <View style={{borderColor: 'red', borderRadius: 5, padding: 30}}>
-                        <MapView
-                        style={styles.mapStyle}
-                        region={{latitude: item.destLat, longitude: item.destLng, latitudeDelta: 0.0922, longitudeDelta: 0.0421}}
-                        >
-                    
-                            <Marker title={item.title} coordinate={{longitude: item.destLng, latitude: item.destLat}}/>
-                        </MapView>
-                    </View>
+                    <MapView
+                    style={styles.mapStyle}
+                    region={{latitude: item.destLat, longitude: item.destLng, latitudeDelta: 0.0922, longitudeDelta: 0.0421}}
+                    >
+                
+                        <Marker title={item.title} coordinate={{longitude: item.destLng, latitude: item.destLat}}/>
+                    </MapView>
+                 
                     <View style={styles.buttonContainer}>
                         <AppButton title="Request Item" onPress={() => {setGetInfo(!getInfo)}}/>
                     </View>
+                    <View style={{height: height*.25}}/>
                 </View>
             </View>
         </SafeView>
@@ -176,6 +177,10 @@ export default function PickupDetailsScreen({route, navigation}){
 }
 
 const styles = StyleSheet.create({
+    masterView: {
+        backgroundColor: Colors.primary,
+        height: '100%',
+    },
     text: {
         fontSize: 20,
         paddingTop: 5,
@@ -185,7 +190,6 @@ const styles = StyleSheet.create({
     },
     row: {
         flexDirection: "row",
-        flex: 1,
     },
     column: {
         flexDirection: "column",
@@ -223,8 +227,10 @@ const styles = StyleSheet.create({
         paddingRight: 15,
     },
     mapStyle: {
-        width: 400,
-        padding: 10,
+        paddingLeft: '5%',
+        width: '90%',
+        height: 400,
+
     },
       buttonContainer: {
           padding: 10

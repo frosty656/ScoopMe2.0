@@ -9,7 +9,7 @@ import LogOutButton from '../../components/LogOutButton';
 
 export default function Settings({navigation}) {
     return(
-        <SafeView>
+        <SafeView style={{backgroundColor: Colors.primary}}>
             <Text style={{fontSize: 40, textAlign: 'center', paddingTop: 10}}>Settings</Text>
             <View style={styles.container}>
                 <View style={styles.buttonContainer}>

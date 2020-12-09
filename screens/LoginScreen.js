@@ -68,6 +68,7 @@ export default function LoginScreen({ navigation }) {
           name="email"
           leftIcon="email"
           placeholder="Enter email"
+          placeholderTextColor={Colors.black}
           autoCapitalize="none"
           keyboardType="email-address"
           textContentType="emailAddress"
@@ -78,6 +79,7 @@ export default function LoginScreen({ navigation }) {
           name="password"
           leftIcon="lock"
           placeholder="Enter password"
+          placeholderTextColor={Colors.black}
           autoCapitalize="none"
           autoCorrect={false}
           textContentType="password"
@@ -96,6 +98,8 @@ export default function LoginScreen({ navigation }) {
           <Text style={styles.forgotPasswordButtonText}>Forgot Password?</Text>
         </TouchableOpacity>
       </View>
+
+      <View style={{height: '70%'}}/>
     </SafeView>
   );
 }
@@ -121,7 +125,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     paddingRight: 280,
-    paddingBottom: 100,
+    paddingBottom: 50,
   },
   inputRow: {
     borderWidth: 4,

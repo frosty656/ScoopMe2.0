@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 
 import {changeUsersName} from '../../components/Firebase/firebase'
+import Colors from "../../utils/colors";
+
+import { View } from 'react-native';
 
 import * as Yup from 'yup';
 import FormField from '../../components/Forms/FormField';
@@ -33,19 +36,22 @@ export default function ChangeName({navigation}){
 
     return(
         <SafeView>
-            <Form
-            initialValues={{name:''}}
-            validationSchema={validationSchema}
-            onSubmit={values => handleUpdateName(values)}
-            >
-                <FormField
-                    name="name"
-                    placeholder="John Smith"
-                    borderRadius={100}
-                />
-                <FormButton title={'Change Name'} />
-                {<FormErrorMessage error={changeNameError} visible={true}/>}
-            </Form>
+            <View style={{height: '100%', backgroundColor: Colors.primary}}>
+                <Form
+                initialValues={{name:''}}
+                validationSchema={validationSchema}
+                onSubmit={values => handleUpdateName(values)}
+                >
+                    <FormField
+                        name="name"
+                        placeholder="John Smith"
+                        placeholderTextColor={Colors.black}
+                        borderRadius={100}
+                    />
+                    <FormButton title={'Change Name'} />
+                    {<FormErrorMessage error={changeNameError} visible={true}/>}
+                </Form>
+            </View>
             
         </SafeView>
     );

@@ -1,11 +1,26 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { View, StyleSheet, Text, Image } from 'react-native';
 
 import AppButton from '../components/AppButton';
 import Colors from '../utils/colors';
 import useStatusBar from '../hooks/useStatusBar';
 
+import { Appearance, AppearanceProvider, useColorScheme } from 'react-native-appearance';
+
+let colorScheme = Appearance.getColorScheme();
+
+let subscription = Appearance.addChangeListener(({ colorScheme }) => {
+  console.log(colorScheme)
+});
+
 export default function WelcomeScreen({ navigation }) {
+
+  useEffect(()=> {
+
+    console.log(colorScheme)
+    return () => subscription.remove();
+  })
+
   useStatusBar('light-content');
   return (
     <View style={styles.container}>
@@ -56,4 +71,3 @@ const styles = StyleSheet.create({
     width: '100%'
   }
 });
-

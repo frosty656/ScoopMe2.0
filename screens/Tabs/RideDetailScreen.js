@@ -12,10 +12,16 @@ import Colors from "../../utils/colors";
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
+
+
 export default function RideDetailScreen({route, navigation}){
+
+    
+    
+
     const { item } = route.params
     return(
-        <SafeView>
+        <SafeView style={styles.mainContainer}>
             <View style={styles.column}>
                 <Text style={styles.text4}>Driver</Text>
                 <Text style={styles.text3}>{item.deliverer}</Text>
@@ -71,6 +77,9 @@ export default function RideDetailScreen({route, navigation}){
 }
 
 const styles = StyleSheet.create({
+    mainContainer: {
+        backgroundColor: Colors.primary
+    },
     text: {
         fontSize: 20,
         paddingTop: 5,

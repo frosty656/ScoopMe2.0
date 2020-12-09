@@ -64,7 +64,7 @@ class SettingsScreen extends Component{
         return (
             <View style={{flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 20, paddingVertical: 10}}>
                 <View style={{flexDirection: 'column'}}>
-        <Text style={{fontSize: 20}}>{t}- {item.destination}</Text>
+        <Text style={{fontSize: 20, color: Colors.mediumGrey}}>{t}- {item.destination}</Text>
                 </View>
             </View>
         )
@@ -76,7 +76,7 @@ class SettingsScreen extends Component{
         return (
             <View style={{flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 20, paddingVertical: 10}}>
                 <View style={{flexDirection: 'column'}}>
-                    <Text style={{fontSize: 20}}>{t}- {item.destination}</Text>
+                    <Text style={{fontSize: 20, color: Colors.mediumGrey}}>{t}- {item.destination}</Text>
                 </View>
             </View>
         )
@@ -103,7 +103,7 @@ class SettingsScreen extends Component{
                         contentContainerStyle={{flexGrow: 1}}
                         data={this.state.trips}
                         keyExtractor={item => item.id}
-                        renderItem={({ item }) => this.renderPickupRow(item)}
+                        renderItem={({ item }) => this.renderRideRow(item)}
                     />
                 </View>
             </View>
@@ -139,7 +139,7 @@ class SettingsScreen extends Component{
 
     render() {
         return (
-        <SafeView style={{ flex: 1, justifyContent: 'flex-start', alignItems: 'center' }}>
+        <SafeView style={{ flex: 1, justifyContent: 'flex-start', alignItems: 'center', backgroundColor: Colors.primary}}>
             <View style={styles.container}>
                 <ProfilePicture/>
                 <Text style={styles.text}>{auth.currentUser.displayName}</Text>

@@ -7,6 +7,7 @@ import * as Permissions from 'expo-permissions';
 import * as ImageManipulator from "expo-image-manipulator";
 
 import AppButton from '../../components/AppButton'
+import Colors from "../../utils/colors";
 
 import'firebase/storage'
 import * as firebase from 'firebase';
@@ -21,12 +22,9 @@ class ImagePickerExample extends React.Component {
   render() {
     
     return (
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'flex-start' }}>
-        
+      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'flex-start', height: '100%', backgroundColor: Colors.primary}}>
         <Image style={{ width: 200, height: 200}} source={this.state.image ? { uri: this.state.image} : null}/>
         {this.showUpdateButton()}
-
-        
       </View>
     );
   }
@@ -86,7 +84,6 @@ class ImagePickerExample extends React.Component {
     }
   };
 
-  //This is being ignored until a further date
     resizeImage = async () => {
       const height = Image.resolveAssetSource(this.state.image);
       const width = Image.resolveAssetSource(this.state.image);
@@ -100,7 +97,6 @@ class ImagePickerExample extends React.Component {
            } }],
             { compress: 1, format: ImageManipulator.SaveFormat.JPEG }
         );
-       // this.setState({croppedImage: manipResult.uri})
     }
 }
 
