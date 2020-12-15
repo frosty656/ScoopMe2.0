@@ -5,11 +5,19 @@ import { View, Text, StyleSheet, TouchableOpacity, Dimensions} from 'react-nativ
 import { format } from "date-fns";
 import MapView, {Marker} from 'react-native-maps';
 import { NeuButton } from 'react-native-neu-element'
-import Colors from "../../utils/colors";
+
 import Form from '../../components/Forms/Form';
 import FormField from '../../components/Forms/FormField';
 import FormButton from '../../components/Forms/FormButton';
 import * as Yup from 'yup';
+
+import { Appearance } from 'react-native-appearance';
+import lightColors from '../../utils/lightColors'
+import darkColors from '../../utils/darkColors'
+
+let currentColorScheme = Appearance.getColorScheme();
+
+let Colors = currentColorScheme === 'light' ? lightColors : darkColors
 
 const { width, height} = Dimensions.get("window");
 

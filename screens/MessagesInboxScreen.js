@@ -5,7 +5,7 @@ import { List, Divider } from 'react-native-paper';
 import SafeView from '../components/SafeView';
 
 import AppButton from '../components/AppButton';
-import Colors from '../utils/colors';
+
 import useStatusBar from '../hooks/useStatusBar';
 
 import { GiftedChat } from 'react-native-gifted-chat';
@@ -16,6 +16,13 @@ import { firestore } from 'firebase';
 import { auth } from '../components/Firebase/firebase';
 import Loading from '../components/Loading';
 import useStatsBar from '../utils/useStatusBar';
+import { Appearance } from 'react-native-appearance';
+import lightColors from '../utils/lightColors'
+import darkColors from '../utils/darkColors'
+
+let currentColorScheme = Appearance.getColorScheme();
+
+let Colors = currentColorScheme === 'light' ? lightColors : darkColors
 
 export default function MessagesInboxScreen({ navigation }) {
   useStatsBar('light-content');

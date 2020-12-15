@@ -2,8 +2,14 @@ import React from 'react';
 import { View, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
-import Colors from '../utils/colors';
 import { NeuInput } from 'react-native-neu-element';
+import { Appearance } from 'react-native-appearance';
+import lightColors from '../utils/lightColors'
+import darkColors from '../utils/darkColors'
+
+let currentColorScheme = Appearance.getColorScheme();
+
+let Colors = currentColorScheme === 'light' ? lightColors : darkColors
 
 export default function AppTextInput({
   leftIcon,

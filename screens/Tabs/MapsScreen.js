@@ -7,14 +7,20 @@ import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplet
 import { isThisHour } from 'date-fns';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import MapViewDirections from 'react-native-maps-directions';
-import Colors from "../../utils/colors";
+import { Appearance } from 'react-native-appearance';
+import lightColors from '../../utils/lightColors'
+import darkColors from '../../utils/darkColors'
+
+let currentColorScheme = Appearance.getColorScheme();
+
+let Colors = currentColorScheme === 'light' ? lightColors : darkColors
 
 
 import {newRide, newDelivery} from '../../components/Firebase/firebase'
 
 const { width, height} = Dimensions.get("window");
 const CARD_HEIGHT = 100;
-const CARD_WIDTH = width * 0.3;
+const CARD_WIDTH = width * 0.4;
 
 class MapViewExample extends React.Component {
   state = {
@@ -312,7 +318,8 @@ class MapViewExample extends React.Component {
                     },
                     textInput: {
                       flex: 1,
-                      padding: 0
+                      padding: 0,
+                      color: Colors.black
                     },
                     poweredContainer: {
                       justifyContent: 'flex-end',

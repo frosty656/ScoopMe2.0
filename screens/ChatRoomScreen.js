@@ -2,18 +2,21 @@ import React, { useState, useEffect } from 'react';
 import { View, StyleSheet, Text, Image, ActivityIndicator } from 'react-native';
 import { IconButton } from 'react-native-paper';
 
-import SafeView from '../components/SafeView';
-
-import AppButton from '../components/AppButton';
-import Colors from '../utils/colors';
 import useStatusBar from '../hooks/useStatusBar';
 
 import { GiftedChat, Bubble, Send, SystemMessage } from 'react-native-gifted-chat'
 
-import * as firebase from 'firebase';
+
 import 'firebase/firestore';
 import { firestore } from 'firebase';
 import { auth } from '../components/Firebase/firebase';
+import { Appearance } from 'react-native-appearance';
+import lightColors from '../utils/lightColors'
+import darkColors from '../utils/darkColors'
+
+let currentColorScheme = Appearance.getColorScheme();
+
+let Colors = currentColorScheme === 'light' ? lightColors : darkColors
 
 export default function ChatRoomScreen({ route, navigation }) {
     useStatusBar('light-content');

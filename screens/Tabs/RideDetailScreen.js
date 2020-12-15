@@ -7,7 +7,13 @@ import MapView, {Marker} from 'react-native-maps';
 import { NeuView } from 'react-native-neu-element';
 import {joinRide} from '../../components/Firebase/firebase'
 import { Dimensions } from 'react-native';
-import Colors from "../../utils/colors";
+import { Appearance } from 'react-native-appearance';
+import lightColors from '../../utils/lightColors'
+import darkColors from '../../utils/darkColors'
+
+let currentColorScheme = Appearance.getColorScheme();
+
+let Colors = currentColorScheme === 'light' ? lightColors : darkColors
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -15,9 +21,6 @@ const windowHeight = Dimensions.get('window').height;
 
 
 export default function RideDetailScreen({route, navigation}){
-
-    
-    
 
     const { item } = route.params
     return(

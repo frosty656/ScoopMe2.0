@@ -1,6 +1,12 @@
 import { DefaultTheme } from '@react-navigation/native';
 
-import Colors from '../utils/colors';
+import { Appearance } from 'react-native-appearance';
+import lightColors from '../utils/lightColors'
+import darkColors from '../utils/darkColors'
+
+let currentColorScheme = Appearance.getColorScheme();
+
+let Colors = currentColorScheme === 'light' ? lightColors : darkColors
 
 const navigationTheme = {
   ...DefaultTheme,

@@ -1,7 +1,13 @@
 import React from 'react';
 import { StyleSheet, Text } from 'react-native';
 
-import Colors from '../../utils/colors';
+import { Appearance } from 'react-native-appearance';
+import lightColors from '../../utils/lightColors'
+import darkColors from '../../utils/darkColors'
+
+let currentColorScheme = Appearance.getColorScheme();
+
+let Colors = currentColorScheme === 'light' ? lightColors : darkColors
 
 export default function FormErrorMessage({ error, visible }) {
   if (!error || !visible) {

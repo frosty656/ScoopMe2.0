@@ -2,7 +2,13 @@ import React from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { NeuButton } from 'react-native-neu-element';
 
-import Colors from '../utils/colors';
+import { Appearance } from 'react-native-appearance';
+import lightColors from '../utils/lightColors'
+import darkColors from '../utils/darkColors'
+
+let currentColorScheme = Appearance.getColorScheme();
+
+let Colors = currentColorScheme === 'light' ? lightColors : darkColors
 
 export default function AppButton({ title, onPress, width, height, active = false}) {
   return (

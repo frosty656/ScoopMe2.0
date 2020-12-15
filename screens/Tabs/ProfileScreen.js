@@ -8,7 +8,13 @@ import IconButton from "../../components/IconButton";
 import useStatusBar from "../../hooks/useStatusBar";
 import MessagesInboxScreen from "../MessagesInboxScreen";
 import AppButton from "../../components/AppButton";
-import Colors from "../../utils/colors";
+import { Appearance } from 'react-native-appearance';
+import lightColors from '../../utils/lightColors'
+import darkColors from '../../utils/darkColors'
+
+let currentColorScheme = Appearance.getColorScheme();
+
+let Colors = currentColorScheme === 'light' ? lightColors : darkColors
 
 
 //move this to the firebase file

@@ -8,10 +8,14 @@ import IconButton from '../../components/IconButton'
 import { useState } from 'react';
 import { render } from 'react-dom';
 import { Component } from 'react';
-import Colors from "../../utils/colors";
 import { isThisHour } from 'date-fns';
-import { useColorScheme } from 'react-native-appearance';
-import colors from '../../utils/colors';
+import { Appearance } from 'react-native-appearance';
+import lightColors from '../../utils/lightColors'
+import darkColors from '../../utils/darkColors'
+
+let currentColorScheme = Appearance.getColorScheme();
+
+let Colors = currentColorScheme === 'light' ? lightColors : darkColors
 
 
 class RideScreen extends Component{
@@ -25,7 +29,7 @@ class RideScreen extends Component{
 
     constructor(props){
         super(props)
-        this.handleGetData();
+        this.handleGetData(); 
     }
 
     
@@ -61,7 +65,7 @@ class RideScreen extends Component{
                 <IconButton
                     iconName="arrow-right"
                     size={30}
-                    color={colors.black}
+                    color={Colors.black}
                     onPress={() => this.props.navigation.navigate('RideDetailScreen', {item})}
                 />
             </View>
@@ -78,7 +82,7 @@ class RideScreen extends Component{
                 <IconButton
                     iconName="arrow-right"
                     size={30}
-                    color={colors.black}
+                    color={Colors.black}
                     onPress={() => this.props.navigation.navigate('PickupDetailScreen', {item})}
                 />
             </View>

@@ -3,14 +3,21 @@ import {Text, View} from 'react-native';
 import SafeView from '../../components/SafeView';
 import {logout} from '../../components/Firebase/firebase'
 import AppButton from '../../components/AppButton';
-import Colors from '../../utils/colors';
+
 import { StyleSheet } from 'react-native';
 import LogOutButton from '../../components/LogOutButton';
+import { Appearance } from 'react-native-appearance';
+import lightColors from '../../utils/lightColors'
+import darkColors from '../../utils/darkColors'
+
+let currentColorScheme = Appearance.getColorScheme();
+
+let Colors = currentColorScheme === 'light' ? lightColors : darkColors
 
 export default function Settings({navigation}) {
     return(
         <SafeView style={{backgroundColor: Colors.primary}}>
-            <Text style={{fontSize: 40, textAlign: 'center', paddingTop: 10}}>Settings</Text>
+            <Text style={{fontSize: 40, textAlign: 'center', paddingTop: 10, color: Colors.black}}>Settings</Text>
             <View style={styles.container}>
                 <View style={styles.buttonContainer}>
                     <AppButton

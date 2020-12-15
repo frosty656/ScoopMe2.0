@@ -1,6 +1,5 @@
 import React, { useEffect, useState }  from 'react';
 import { StyleSheet, View, Dimensions, Button, TextInput, Text, Animated, ScrollView, Platform, TouchableOpacity, Image  } from 'react-native';
-import Colors from "../../utils/colors";
 import SafeView from '../../components/SafeView';
 import IconButton from '../../components/IconButton';
 import Constants from 'expo-constants';
@@ -14,6 +13,14 @@ import FormButton from '../../components/Forms/FormButton';
 import FormErrorMessage from '../../components/Forms/FormErrorMessage';
 import AppButton from '../../components/AppButton'
 import * as Yup from 'yup';
+
+import { Appearance } from 'react-native-appearance';
+import lightColors from '../../utils/lightColors'
+import darkColors from '../../utils/darkColors'
+
+let currentColorScheme = Appearance.getColorScheme();
+
+let Colors = currentColorScheme === 'light' ? lightColors : darkColors
 
 const { width, height} = Dimensions.get("window");
 // This should have all the code in one file

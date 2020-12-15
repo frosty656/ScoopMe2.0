@@ -2,25 +2,17 @@ import React, { useEffect } from 'react';
 import { View, StyleSheet, Text, Image } from 'react-native';
 
 import AppButton from '../components/AppButton';
-import Colors from '../utils/colors';
+
 import useStatusBar from '../hooks/useStatusBar';
 
-import { Appearance, AppearanceProvider, useColorScheme } from 'react-native-appearance';
+import { Appearance } from 'react-native-appearance';
+import lightColors from '../utils/lightColors'
+import darkColors from '../utils/darkColors'
 
-let colorScheme = Appearance.getColorScheme();
+let currentColorScheme = Appearance.getColorScheme();
 
-let subscription = Appearance.addChangeListener(({ colorScheme }) => {
-  console.log(colorScheme)
-});
-
+let Colors = currentColorScheme === 'light' ? lightColors : darkColors
 export default function WelcomeScreen({ navigation }) {
-
-  useEffect(()=> {
-
-    console.log(colorScheme)
-    return () => subscription.remove();
-  })
-
   useStatusBar('light-content');
   return (
     <View style={styles.container}>
