@@ -7,11 +7,18 @@ import * as Permissions from 'expo-permissions';
 import * as ImageManipulator from "expo-image-manipulator";
 
 import AppButton from '../../components/AppButton'
-import Colors from "../../utils/colors";
+
 
 import'firebase/storage'
 import * as firebase from 'firebase';
 import { auth } from '../../components/Firebase/firebase';
+import { Appearance } from 'react-native-appearance';
+import lightColors from '../../utils/lightColors'
+import darkColors from '../../utils/darkColors'
+
+let currentColorScheme = Appearance.getColorScheme();
+
+let Colors = currentColorScheme === 'light' ? lightColors : darkColors
 
 
 class ImagePickerExample extends React.Component {

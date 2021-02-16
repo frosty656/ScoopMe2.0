@@ -13,6 +13,7 @@ import FormButton from '../../components/Forms/FormButton';
 import FormErrorMessage from '../../components/Forms/FormErrorMessage';
 import AppButton from '../../components/AppButton'
 import * as Yup from 'yup';
+import {createNewUser} from '../../components/Firebase/firebase'
 
 import { Appearance } from 'react-native-appearance';
 import lightColors from '../../utils/lightColors'
@@ -61,16 +62,19 @@ export default function RegisterNewuser({ navigation }){
     const [email, setEmail] = useState('');
     const [name, setName] = useState('');
 
-    function handleLogin(values, actions) {
-      event.preventDefault
+    function handleUploadInfo(){
+      createNewUser(email, password, name, userImage)
+
+    }
+
+    function handleLogin(values) {
       //This should probably do some kind of check to see if an email exists already
       const { email, password } = values;
       setEmail(email)
       setPassword(password)
     }
 
-    function handleName(values, actions) {
-      event.preventDefault
+    function handleName(values) {
       const { name } = values;
       setName(name)
     }
@@ -183,6 +187,7 @@ export default function RegisterNewuser({ navigation }){
 
     // Handle Image
     const [userImage, setUserImage] = useState('');
+
     async function getPermissionAsync() {
       if (Constants.platform.ios) {
         const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
@@ -197,7 +202,6 @@ export default function RegisterNewuser({ navigation }){
     })
 
     async function pickImage(){
-      console.log("GIMME IMAGE")
       try {
         let result = await ImagePicker.launchImageLibraryAsync({  
           mediaTypes: ImagePicker.MediaTypeOptions.All,
@@ -270,7 +274,7 @@ export default function RegisterNewuser({ navigation }){
                 </View>
                 <View style={styles.card}>
                   <View style={{height: '50%'}}/>
-                  <AppButton title={"Sign Up"} onPress={() => {console.log("hello world")}}/>
+                  <AppButton title={"Sign Up"} onPress={() => handleUploadInfo()}/>
                 </View>
             </ScrollView>
         </SafeView>

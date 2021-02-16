@@ -15,12 +15,17 @@ export const auth = firebase.auth();
 export const loginWithEmail = (email, password) =>
   auth.signInWithEmailAndPassword(email, password);
 
-export const createNewUser = (email, password, imageURI, name) => {
-  auth.createUserWithEmailAndPassword(email, password).then(
-    auth.currentUser.updateProfile({displayName: name})
-  ).then(
-    auth.currentUser.updateProfile({photoURL: imageURI})
-  )
+export const createNewUser = (email, password, name, imageURI = "") => {
+  if(imageURI != ""){
+    auth.
+    auth.createUserWithEmailAndPassword(email, password).then(
+      auth.currentUser.updateProfile({displayName: name})
+    ).then(
+      auth.currentUser.updateProfile({photoURL: imageURI})
+    )
+  } else {
+    auth.createUserWithEmailAndPassword(email, password)
+  }
 }
 
 export const registerWithEmail = (email, password) =>

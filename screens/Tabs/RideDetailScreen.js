@@ -97,8 +97,9 @@ const styles = StyleSheet.create({
     },
     column: {
         flexDirection: "column",
-        flex: 2,
+        flex: 3,
         alignItems: 'center',
+
     },
     text2: {
         fontSize: 20,
@@ -125,7 +126,7 @@ const styles = StyleSheet.create({
     text5: {
         fontSize: 18,
         fontWeight: '300',
-        padding: 2,
+        padding: 5,
         color: Colors.blue,
         flex: 1,
         alignItems: 'center',
@@ -145,7 +146,7 @@ const styles = StyleSheet.create({
     },
     mapStyle: {
         width: 350,
-        height: 275,
+        height: 200,
         position: 'relative',
         borderRadius: 10
     },

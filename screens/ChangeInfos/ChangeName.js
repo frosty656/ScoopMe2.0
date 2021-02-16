@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import {changeUsersName} from '../../components/Firebase/firebase'
-import Colors from "../../utils/colors";
+
 
 import { View } from 'react-native';
 
@@ -11,6 +11,13 @@ import FormButton from '../../components/Forms/FormButton';
 import FormErrorMessage from '../../components/Forms/FormErrorMessage';
 import SafeView from '../../components/SafeView';
 import Form from '../../components/Forms/Form';
+import { Appearance } from 'react-native-appearance';
+import lightColors from '../../utils/lightColors'
+import darkColors from '../../utils/darkColors'
+
+let currentColorScheme = Appearance.getColorScheme();
+
+let Colors = currentColorScheme === 'light' ? lightColors : darkColors
 
 const validationSchema = Yup.object().shape({
     name: Yup.string()
