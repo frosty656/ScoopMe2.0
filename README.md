@@ -7,7 +7,9 @@
   <img alt="Supports Expo Android" longdesc="Supports Expo Android" src="https://img.shields.io/badge/Android-4630EB.svg?style=flat-square&logo=ANDROID&labelColor=A4C639&logoColor=fff" />  
 </p>
 
-Give me a good idea to complete the rest
+All APIs and other services have been closed and will not work.
+
+Link to demo: https://youtu.be/O3tukUkNcFs
 
 ## Features
 - Create account
